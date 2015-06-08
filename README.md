@@ -1,4 +1,4 @@
 # KYAnimatedPageControl
 A custom UIPageControl with multiple animations 
 
-Hold on a second.
+##*Hold on a second.*
