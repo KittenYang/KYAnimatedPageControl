@@ -17,7 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
     KYAnimatedPageControl *pageControl = [[KYAnimatedPageControl alloc]initWithFrame:CGRectMake(20, 400, 280, 50)];
     pageControl.pageCount = 6;
