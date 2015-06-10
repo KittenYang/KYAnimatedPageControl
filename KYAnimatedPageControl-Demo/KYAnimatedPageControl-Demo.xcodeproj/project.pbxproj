@@ -14,6 +14,8 @@
 		5F49CE671B26C3BB00C304FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F49CE661B26C3BB00C304FE /* Images.xcassets */; };
 		5F49CE6A1B26C3BB00C304FE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F49CE681B26C3BB00C304FE /* LaunchScreen.xib */; };
 		5F49CE761B26C3BC00C304FE /* KYAnimatedPageControl_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F49CE751B26C3BC00C304FE /* KYAnimatedPageControl_DemoTests.m */; };
+		5F793B251B28345A00A77B17 /* SpringAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F793B241B28345A00A77B17 /* SpringAnimation.m */; };
+		5F793B2C1B286F5100A77B17 /* KYAnimatedPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F793B2B1B286F5100A77B17 /* KYAnimatedPageControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,10 @@
 		5F49CE6F1B26C3BC00C304FE /* KYAnimatedPageControl-DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KYAnimatedPageControl-DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F49CE741B26C3BC00C304FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F49CE751B26C3BC00C304FE /* KYAnimatedPageControl_DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KYAnimatedPageControl_DemoTests.m; sourceTree = "<group>"; };
+		5F793B231B28345A00A77B17 /* SpringAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpringAnimation.h; path = Classes/SpringAnimation.h; sourceTree = SOURCE_ROOT; };
+		5F793B241B28345A00A77B17 /* SpringAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpringAnimation.m; path = Classes/SpringAnimation.m; sourceTree = SOURCE_ROOT; };
+		5F793B2A1B286F5100A77B17 /* KYAnimatedPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYAnimatedPageControl.h; path = Classes/KYAnimatedPageControl.h; sourceTree = SOURCE_ROOT; };
+		5F793B2B1B286F5100A77B17 /* KYAnimatedPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KYAnimatedPageControl.m; path = Classes/KYAnimatedPageControl.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,8 @@
 				5F49CE5E1B26C3BB00C304FE /* AppDelegate.m */,
 				5F49CE601B26C3BB00C304FE /* ViewController.h */,
 				5F49CE611B26C3BB00C304FE /* ViewController.m */,
+				5F793B2D1B286F5900A77B17 /* KYAnimatedPageControl */,
+				5F793B291B286F4500A77B17 /* Helper */,
 				5F49CE631B26C3BB00C304FE /* Main.storyboard */,
 				5F49CE661B26C3BB00C304FE /* Images.xcassets */,
 				5F49CE681B26C3BB00C304FE /* LaunchScreen.xib */,
@@ -117,6 +125,24 @@
 				5F49CE741B26C3BC00C304FE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5F793B291B286F4500A77B17 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				5F793B231B28345A00A77B17 /* SpringAnimation.h */,
+				5F793B241B28345A00A77B17 /* SpringAnimation.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		5F793B2D1B286F5900A77B17 /* KYAnimatedPageControl */ = {
+			isa = PBXGroup;
+			children = (
+				5F793B2A1B286F5100A77B17 /* KYAnimatedPageControl.h */,
+				5F793B2B1B286F5100A77B17 /* KYAnimatedPageControl.m */,
+			);
+			name = KYAnimatedPageControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +248,8 @@
 				5F49CE621B26C3BB00C304FE /* ViewController.m in Sources */,
 				5F49CE5F1B26C3BB00C304FE /* AppDelegate.m in Sources */,
 				5F49CE5C1B26C3BB00C304FE /* main.m in Sources */,
+				5F793B2C1B286F5100A77B17 /* KYAnimatedPageControl.m in Sources */,
+				5F793B251B28345A00A77B17 /* SpringAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +446,7 @@
 				5F49CE7B1B26C3BC00C304FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5F49CE7C1B26C3BC00C304FE /* Build configuration list for PBXNativeTarget "KYAnimatedPageControl-DemoTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +455,7 @@
 				5F49CE7E1B26C3BC00C304FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
