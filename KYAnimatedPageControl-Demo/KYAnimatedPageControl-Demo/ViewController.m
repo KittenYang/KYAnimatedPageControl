@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "KYAnimatedPageControl.h"
 
 @interface ViewController ()
 
@@ -17,9 +18,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-
+    
+    KYAnimatedPageControl *pageControl = [[KYAnimatedPageControl alloc]initWithFrame:CGRectMake(20, 400, 280, 50)];
+    pageControl.pageCount = 6;
+    pageControl.selectedPage = 4;
+    pageControl.unSelectedColor = [UIColor colorWithWhite:0.9 alpha:1];
+    pageControl.selectedColor = [UIColor orangeColor];
+    [pageControl display];
+    [self.view addSubview:pageControl];
     
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

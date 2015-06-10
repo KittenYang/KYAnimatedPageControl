@@ -14,8 +14,11 @@
 		5F49CE671B26C3BB00C304FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F49CE661B26C3BB00C304FE /* Images.xcassets */; };
 		5F49CE6A1B26C3BB00C304FE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F49CE681B26C3BB00C304FE /* LaunchScreen.xib */; };
 		5F49CE761B26C3BC00C304FE /* KYAnimatedPageControl_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F49CE751B26C3BC00C304FE /* KYAnimatedPageControl_DemoTests.m */; };
-		5F793B251B28345A00A77B17 /* SpringAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F793B241B28345A00A77B17 /* SpringAnimation.m */; };
+		5F793B251B28345A00A77B17 /* KYSpringLayerAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F793B241B28345A00A77B17 /* KYSpringLayerAnimation.m */; };
 		5F793B2C1B286F5100A77B17 /* KYAnimatedPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F793B2B1B286F5100A77B17 /* KYAnimatedPageControl.m */; };
+		5F793B301B289F2500A77B17 /* IndicatorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F793B2F1B289F2500A77B17 /* IndicatorLayer.m */; };
+		5F793B331B289FCA00A77B17 /* IndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F793B321B289FCA00A77B17 /* IndicatorView.m */; };
+		5F793B371B28A1B200A77B17 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F793B361B28A1B200A77B17 /* Line.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,10 +45,16 @@
 		5F49CE6F1B26C3BC00C304FE /* KYAnimatedPageControl-DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KYAnimatedPageControl-DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F49CE741B26C3BC00C304FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F49CE751B26C3BC00C304FE /* KYAnimatedPageControl_DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KYAnimatedPageControl_DemoTests.m; sourceTree = "<group>"; };
-		5F793B231B28345A00A77B17 /* SpringAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpringAnimation.h; path = Classes/SpringAnimation.h; sourceTree = SOURCE_ROOT; };
-		5F793B241B28345A00A77B17 /* SpringAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpringAnimation.m; path = Classes/SpringAnimation.m; sourceTree = SOURCE_ROOT; };
+		5F793B231B28345A00A77B17 /* KYSpringLayerAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYSpringLayerAnimation.h; path = Classes/KYSpringLayerAnimation.h; sourceTree = SOURCE_ROOT; };
+		5F793B241B28345A00A77B17 /* KYSpringLayerAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KYSpringLayerAnimation.m; path = Classes/KYSpringLayerAnimation.m; sourceTree = SOURCE_ROOT; };
 		5F793B2A1B286F5100A77B17 /* KYAnimatedPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYAnimatedPageControl.h; path = Classes/KYAnimatedPageControl.h; sourceTree = SOURCE_ROOT; };
 		5F793B2B1B286F5100A77B17 /* KYAnimatedPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KYAnimatedPageControl.m; path = Classes/KYAnimatedPageControl.m; sourceTree = SOURCE_ROOT; };
+		5F793B2E1B289F2500A77B17 /* IndicatorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndicatorLayer.h; path = Classes/IndicatorLayer.h; sourceTree = SOURCE_ROOT; };
+		5F793B2F1B289F2500A77B17 /* IndicatorLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndicatorLayer.m; path = Classes/IndicatorLayer.m; sourceTree = SOURCE_ROOT; };
+		5F793B311B289FCA00A77B17 /* IndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndicatorView.h; path = Classes/IndicatorView.h; sourceTree = SOURCE_ROOT; };
+		5F793B321B289FCA00A77B17 /* IndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndicatorView.m; path = Classes/IndicatorView.m; sourceTree = SOURCE_ROOT; };
+		5F793B351B28A1B200A77B17 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Line.h; path = Classes/Line.h; sourceTree = SOURCE_ROOT; };
+		5F793B361B28A1B200A77B17 /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Line.m; path = Classes/Line.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +101,7 @@
 				5F49CE601B26C3BB00C304FE /* ViewController.h */,
 				5F49CE611B26C3BB00C304FE /* ViewController.m */,
 				5F793B2D1B286F5900A77B17 /* KYAnimatedPageControl */,
-				5F793B291B286F4500A77B17 /* Helper */,
+				5F793B291B286F4500A77B17 /* SpringAnimation */,
 				5F49CE631B26C3BB00C304FE /* Main.storyboard */,
 				5F49CE661B26C3BB00C304FE /* Images.xcassets */,
 				5F49CE681B26C3BB00C304FE /* LaunchScreen.xib */,
@@ -127,13 +136,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		5F793B291B286F4500A77B17 /* Helper */ = {
+		5F793B291B286F4500A77B17 /* SpringAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				5F793B231B28345A00A77B17 /* SpringAnimation.h */,
-				5F793B241B28345A00A77B17 /* SpringAnimation.m */,
+				5F793B231B28345A00A77B17 /* KYSpringLayerAnimation.h */,
+				5F793B241B28345A00A77B17 /* KYSpringLayerAnimation.m */,
 			);
-			name = Helper;
+			name = SpringAnimation;
 			sourceTree = "<group>";
 		};
 		5F793B2D1B286F5900A77B17 /* KYAnimatedPageControl */ = {
@@ -141,8 +150,30 @@
 			children = (
 				5F793B2A1B286F5100A77B17 /* KYAnimatedPageControl.h */,
 				5F793B2B1B286F5100A77B17 /* KYAnimatedPageControl.m */,
+				5F793B381B28A1BA00A77B17 /* Line */,
+				5F793B341B289FD000A77B17 /* Indicator */,
 			);
 			name = KYAnimatedPageControl;
+			sourceTree = "<group>";
+		};
+		5F793B341B289FD000A77B17 /* Indicator */ = {
+			isa = PBXGroup;
+			children = (
+				5F793B311B289FCA00A77B17 /* IndicatorView.h */,
+				5F793B321B289FCA00A77B17 /* IndicatorView.m */,
+				5F793B2E1B289F2500A77B17 /* IndicatorLayer.h */,
+				5F793B2F1B289F2500A77B17 /* IndicatorLayer.m */,
+			);
+			name = Indicator;
+			sourceTree = "<group>";
+		};
+		5F793B381B28A1BA00A77B17 /* Line */ = {
+			isa = PBXGroup;
+			children = (
+				5F793B351B28A1B200A77B17 /* Line.h */,
+				5F793B361B28A1B200A77B17 /* Line.m */,
+			);
+			name = Line;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,10 +277,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F49CE621B26C3BB00C304FE /* ViewController.m in Sources */,
+				5F793B371B28A1B200A77B17 /* Line.m in Sources */,
 				5F49CE5F1B26C3BB00C304FE /* AppDelegate.m in Sources */,
 				5F49CE5C1B26C3BB00C304FE /* main.m in Sources */,
 				5F793B2C1B286F5100A77B17 /* KYAnimatedPageControl.m in Sources */,
-				5F793B251B28345A00A77B17 /* SpringAnimation.m in Sources */,
+				5F793B251B28345A00A77B17 /* KYSpringLayerAnimation.m in Sources */,
+				5F793B301B289F2500A77B17 /* IndicatorLayer.m in Sources */,
+				5F793B331B289FCA00A77B17 /* IndicatorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "KYAnimatedPageControl-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -388,6 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "KYAnimatedPageControl-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
