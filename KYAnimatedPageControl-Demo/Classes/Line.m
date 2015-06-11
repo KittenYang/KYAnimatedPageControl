@@ -7,17 +7,17 @@
 
 
 //相邻小球之间的距离
-#define DISTANCE (self.frame.size.width - self.ballDiameter) / (self.pageCount - 1)
+#define DISTANCE ((self.frame.size.width - self.ballDiameter) / (self.pageCount - 1))
 
 #import "Line.h"
 #import "KYSpringLayerAnimation.h"
 
 
-@interface Line()
-
-
-//选中的长度
-@property(nonatomic,assign)CGFloat selectedLineLength;
+@interface Line(){
+    
+    CGFloat initialSelectedLineLength;
+    CGFloat lastContentOffsetX;
+}
 
 
 @end
@@ -26,6 +26,7 @@
 
 #pragma mark -- Initialize
 
+//第一次显示提供默认值
 -(id)init{
     
     self = [super init];
@@ -39,6 +40,7 @@
         self.selectedColor   = [UIColor redColor];
         self.shouldShowProgressLine = YES;
         self.pageCount = 6;
+        
         self.masksToBounds = NO;
     }
     
@@ -46,9 +48,9 @@
 }
 
 
+//必须重载  drawInContext前必调此方法，需要拷贝上一个状态
 -(id)initWithLayer:(Line*)layer{
     self = [super initWithLayer:layer];
-
     if (self) {
         
         self.selectedPage = layer.selectedPage;
@@ -58,6 +60,8 @@
         self.selectedColor   = layer.selectedColor;
         self.shouldShowProgressLine = layer.shouldShowProgressLine;
         self.pageCount = layer.pageCount;
+        self.selectedLineLength = layer.selectedLineLength;
+        self.bindScrollView = layer.bindScrollView;
         self.masksToBounds = layer.masksToBounds;
     }
     
@@ -71,6 +75,9 @@
         _selectedPage = selectedPage;
         
         self.selectedLineLength = self.pageCount > 1 ? (selectedPage-1) * DISTANCE : 0;
+        
+        initialSelectedLineLength = self.selectedLineLength;
+//        lastContentOffsetX = (self.selectedLineLength / DISTANCE) * self.bindScrollView.frame.size.width;
     }
 
 }
@@ -89,9 +96,10 @@
 
 //invoke when call setNeedDisplay
 -(void)drawInContext:(CGContextRef)ctx{
-
     
+
     NSAssert(self.selectedPage <= self.pageCount, @"ERROR:PageCount can not less than selectedPage");
+    NSAssert(self.selectedPage != 0, @"ERROR:SelectedPage can not be ZERO!");
 
     
     if (self.pageCount == 1) {
@@ -137,41 +145,67 @@
         CGPathAddRoundedRect(linePath, nil, CGRectMake(self.ballDiameter/2, self.frame.size.height/2 - self.lineHeight/2, self.selectedLineLength , self.lineHeight), 0, 0);
         
         //画pageCount个有色小圆
-        for (NSInteger i = 0; i<self.selectedPage; i++) {
+        for (NSInteger i = 0; i<self.pageCount; i++) {
             
-            CGRect circleRect = CGRectMake(0 + i*DISTANCE, self.frame.size.height / 2 - self.ballDiameter / 2, self.ballDiameter, self.ballDiameter);
-            CGPathAddEllipseInRect(linePath, nil, circleRect);
-            
+            if (i*DISTANCE <= self.selectedLineLength+0.1) {
+                CGRect circleRect = CGRectMake(0 + i*DISTANCE, self.frame.size.height / 2 - self.ballDiameter / 2, self.ballDiameter, self.ballDiameter);
+                CGPathAddEllipseInRect(linePath, nil, circleRect);
+            }
         }
         
         CGContextAddPath(ctx, linePath);
         CGContextSetFillColorWithColor(ctx, self.selectedColor.CGColor);
         CGContextFillPath(ctx);
+    
     }
 
 }
 
 
-#pragma Helper
--(CGMutablePathRef)addLine:(CGMutablePathRef)linePath{
-    
-
-    return linePath;
-}
-
-
 
 #pragma mark -- length animation
+//tap index to scroll
 -(void)animateSelectedLineToNewIndex:(NSInteger)newIndex{
+
     CGFloat newLineLength = (newIndex-1) * DISTANCE;
     CABasicAnimation *anim = [KYSpringLayerAnimation create:@"selectedLineLength" duration:0.2 fromValue:@(self.selectedLineLength) toValue:@(newLineLength)];
+
+    //Spring Animation
+//    CAKeyframeAnimation *anim = [KYSpringLayerAnimation createSpring:@"selectedLineLength" duration:1.0 usingSpringWithDamping:0.5 initialSpringVelocity:3 fromValue:@(self.selectedLineLength) toValue:@(newLineLength)];
+    
     anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     self.selectedLineLength = newLineLength;
+    anim.delegate = self;
     [self addAnimation:anim forKey:@"lineAnimation"];
-//    [self setNeedsDisplay];
-    
+
+    self.selectedPage = newIndex;
+
+
 }
 
 
+//pan to scroll
+-(void)animateSelectedLineWithScrollView:(UIScrollView *)scrollView{
+    
+    
+    CGFloat offSetX = scrollView.contentOffset.x - lastContentOffsetX;
+    
+    self.selectedLineLength = initialSelectedLineLength + (offSetX/scrollView.frame.size.width) * DISTANCE;
+    [self setNeedsDisplay];
+
+}
+
+
+
+#pragma maek --  Animation Delegate
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    
+    if (flag) {
+        initialSelectedLineLength = self.selectedLineLength;
+        lastContentOffsetX = (self.selectedLineLength / DISTANCE) * self.bindScrollView.frame.size.width;
+        NSLog(@"self.selectedLineLength / DISTANCE:%f",self.selectedLineLength / DISTANCE);
+    }
+    
+}
 
 @end

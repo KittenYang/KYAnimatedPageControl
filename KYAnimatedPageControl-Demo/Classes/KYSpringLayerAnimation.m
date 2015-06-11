@@ -21,7 +21,6 @@
     anim.duration = duration;
     
     return anim;
-    
 }
 
 +(CAKeyframeAnimation *)createSpring:(NSString *)keypath duration:(CFTimeInterval)duration usingSpringWithDamping:(CGFloat)damping initialSpringVelocity:(CGFloat)velocity fromValue:(id)fromValue toValue:(id)toValue{
@@ -42,7 +41,7 @@
 +(NSMutableArray *) animationValues:(id)fromValue toValue:(id)toValue usingSpringWithDamping:(CGFloat)damping initialSpringVelocity:(CGFloat)velocity duration:(CGFloat)duration{
     
     
-    //帧数
+    //60个关键帧
     NSInteger numOfPoints  = duration * 60;
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:numOfPoints];
     for (NSInteger i = 0; i < numOfPoints; i++) {
@@ -55,7 +54,8 @@
     for (NSInteger point = 0; point<numOfPoints; point++) {
         
         CGFloat x = (CGFloat)point / (CGFloat)numOfPoints;
-        CGFloat value = d_value - pow(M_E, -damping * x) * cos(velocity * x); // y = 1-e^{-5x} * cos(30x)
+        CGFloat value = [toValue floatValue] - d_value * (pow(M_E, -damping * x) * cos(velocity * x)); // y = 1-e^{-5x} * cos(30x)
+        NSLog(@"toValue:%f,diff:%f",[toValue floatValue],d_value * (pow(M_E, -damping * x) * cos(velocity * x)));
         values[point] = @(value);
     }
 

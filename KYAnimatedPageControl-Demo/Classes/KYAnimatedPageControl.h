@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Line.h"
 
 @interface KYAnimatedPageControl : UIView
 
@@ -23,8 +24,16 @@
 //选中的颜色
 @property(nonatomic,strong)UIColor *selectedColor;
 
+//直线Layer
+@property(nonatomic,readonly)Line *pageControlLine;
 
+//绑定的滚动视图
+@property(nonatomic,strong)UIScrollView *bindScrollView;
 
+//读取手势
+@property(nonatomic,strong)UITapGestureRecognizer *tap;
+
+//设置完所有参数后，启动这个方法
 -(void)display;
 
 @end

@@ -32,9 +32,20 @@
 //选中的颜色
 @property(nonatomic,strong)UIColor *selectedColor;
 
+//选中的长度
+@property(nonatomic,assign)CGFloat selectedLineLength;
 
 
-//直线动画接口
+//绑定的滚动视图
+@property(nonatomic,strong)UIScrollView *bindScrollView;
+
+//直线动画接口:传入目标index作为参数
 -(void)animateSelectedLineToNewIndex:(NSInteger)newIndex;
+
+//直线动画接口:传入绑定scrollView作为参数
+-(void)animateSelectedLineWithScrollView:(UIScrollView *)scrollView;
+
+
+
 
 @end

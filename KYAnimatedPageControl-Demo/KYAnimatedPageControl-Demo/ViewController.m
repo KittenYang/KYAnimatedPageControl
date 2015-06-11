@@ -8,8 +8,12 @@
 
 #import "ViewController.h"
 #import "KYAnimatedPageControl.h"
+#import "DemoCell.h"
 
-@interface ViewController ()
+@interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+
+@property(nonatomic,strong)KYAnimatedPageControl *pageControl;
+@property (weak, nonatomic) IBOutlet UICollectionView *demoCollectionView;
 
 @end
 
@@ -18,21 +22,61 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    KYAnimatedPageControl *pageControl = [[KYAnimatedPageControl alloc]initWithFrame:CGRectMake(20, 400, 280, 50)];
-    pageControl.pageCount = 6;
-    pageControl.selectedPage = 4;
-    pageControl.unSelectedColor = [UIColor colorWithWhite:0.9 alpha:1];
-    pageControl.selectedColor = [UIColor orangeColor];
-    [pageControl display];
-    [self.view addSubview:pageControl];
+    self.pageControl = [[KYAnimatedPageControl alloc]initWithFrame:CGRectMake(20, 450, 280, 50)];
+    self.pageControl.pageCount = 8;
+    self.pageControl.selectedPage = 1;
+    self.pageControl.unSelectedColor = [UIColor colorWithWhite:0.9 alpha:1];
+    self.pageControl.selectedColor = [UIColor orangeColor];
+    self.pageControl.bindScrollView = self.demoCollectionView;
+    [self.pageControl display];
+    [self.view addSubview:self.pageControl];
     
 }
 
+
+
+
+#pragma mark  -- UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return self.pageControl.pageCount;
+}
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+
+    DemoCell *democell = (DemoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"democell" forIndexPath:indexPath];
+    democell.cellNumLabel.text = [NSString stringWithFormat:@"%ld",indexPath.item + 1];
+    
+    return democell;
+    
+}
+
+
+
+#pragma mark -- UIScrollViewDelegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    if (scrollView.dragging) {
+        [self.pageControl.pageControlLine animateSelectedLineWithScrollView:scrollView];
+    
+    }
+
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+
+
+
+
+
 
 @end
