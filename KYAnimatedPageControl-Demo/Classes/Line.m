@@ -19,9 +19,12 @@
 //选中的长度
 @property(nonatomic,assign)CGFloat selectedLineLength;
 
+
 @end
 
 @implementation Line
+
+#pragma mark -- Initialize
 
 -(id)init{
     
@@ -42,6 +45,27 @@
     return self;
 }
 
+
+-(id)initWithLayer:(Line*)layer{
+    self = [super initWithLayer:layer];
+
+    if (self) {
+        
+        self.selectedPage = layer.selectedPage;
+        self.lineHeight = layer.lineHeight;
+        self.ballDiameter = layer.ballDiameter;
+        self.unSelectedColor = layer.unSelectedColor;
+        self.selectedColor   = layer.selectedColor;
+        self.shouldShowProgressLine = layer.shouldShowProgressLine;
+        self.pageCount = layer.pageCount;
+        self.masksToBounds = layer.masksToBounds;
+    }
+    
+    return self;
+}
+
+
+#pragma mark -- Setter
 -(void)setSelectedPage:(NSInteger)selectedPage{
     if (_selectedPage != selectedPage) {
         _selectedPage = selectedPage;
@@ -51,6 +75,8 @@
 
 }
 
+
+#pragma mark -- override Class func
 + (BOOL)needsDisplayForKey:(NSString *)key{
     if ([key isEqual: @"selectedLineLength"]) {
         return  YES;
@@ -60,16 +86,20 @@
 }
 
 
+
 //invoke when call setNeedDisplay
 -(void)drawInContext:(CGContextRef)ctx{
+
     
     NSAssert(self.selectedPage <= self.pageCount, @"ERROR:PageCount can not less than selectedPage");
+
     
     if (self.pageCount == 1) {
         CGMutablePathRef linePath = CGPathCreateMutable();
         CGPathMoveToPoint(linePath, nil, self.frame.size.width/2, self.frame.size.height/2);
         CGRect circleRect = CGRectMake(self.frame.size.width/2 - self.ballDiameter/2, self.frame.size.height / 2 - self.ballDiameter / 2, self.ballDiameter, self.ballDiameter);
         CGPathAddEllipseInRect(linePath, nil, circleRect);
+
         CGContextAddPath(ctx, linePath);
         CGContextSetFillColorWithColor(ctx, self.selectedColor.CGColor);
         CGContextFillPath(ctx);
@@ -84,6 +114,7 @@
     
     //画默认颜色的背景线
     CGPathAddRoundedRect(linePath, nil, CGRectMake(self.ballDiameter/2, self.frame.size.height/2 - self.lineHeight/2, self.frame.size.width - self.ballDiameter, self.lineHeight), 0, 0);
+
     
     //画pageCount个小圆
     for (NSInteger i = 0; i<self.pageCount; i++) {
@@ -116,20 +147,28 @@
         CGContextAddPath(ctx, linePath);
         CGContextSetFillColorWithColor(ctx, self.selectedColor.CGColor);
         CGContextFillPath(ctx);
-
     }
 
 }
 
 
+#pragma Helper
+-(CGMutablePathRef)addLine:(CGMutablePathRef)linePath{
+    
+
+    return linePath;
+}
+
+
 
 #pragma mark -- length animation
--(void)animateSelectedLineLengthTo:(CGFloat)newLength{
-    CABasicAnimation *anim = [KYSpringLayerAnimation create:@"selectedLineLength" duration:0.2 fromValue:@(self.selectedLineLength) toValue:@(newLength)];
-    
+-(void)animateSelectedLineToNewIndex:(NSInteger)newIndex{
+    CGFloat newLineLength = (newIndex-1) * DISTANCE;
+    CABasicAnimation *anim = [KYSpringLayerAnimation create:@"selectedLineLength" duration:0.2 fromValue:@(self.selectedLineLength) toValue:@(newLineLength)];
     anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    self.selectedLineLength = newLength;
+    self.selectedLineLength = newLineLength;
     [self addAnimation:anim forKey:@"lineAnimation"];
+//    [self setNeedsDisplay];
     
 }
 

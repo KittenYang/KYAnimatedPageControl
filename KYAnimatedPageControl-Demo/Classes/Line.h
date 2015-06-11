@@ -33,7 +33,8 @@
 @property(nonatomic,strong)UIColor *selectedColor;
 
 
+
 //直线动画接口
--(void)animateSelectedLineLengthTo:(CGFloat)newLength;
+-(void)animateSelectedLineToNewIndex:(NSInteger)newIndex;
 
 @end

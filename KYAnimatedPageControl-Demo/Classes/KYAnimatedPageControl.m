@@ -20,12 +20,15 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+        [self addGestureRecognizer:tap];
 
     }
     return self;
 }
 
 
+#pragma mark -- PUBLIC Method
 -(void)display{
     
     self.line = [Line layer];
@@ -41,6 +44,23 @@
     
 }
 
+
+
+#pragma mark -- UITapGestureRecognizer tapAction
+-(void)tapAction:(UITapGestureRecognizer *)ges{
+    CGPoint location = [ges locationInView:self];
+    if (CGRectContainsPoint(self.line.frame, location)) {
+        CGFloat ballDistance = self.frame.size.width / (self.pageCount - 1);
+        NSInteger index =  location.x / ballDistance;
+        if ((location.x - index*ballDistance) >= ballDistance/2) {
+            index += 1;
+        }
+        
+        [self.line animateSelectedLineToNewIndex:index+1];
+        NSLog(@"DidSelected index:%ld",(long)index+1);
+    }
+    
+}
 
 
 

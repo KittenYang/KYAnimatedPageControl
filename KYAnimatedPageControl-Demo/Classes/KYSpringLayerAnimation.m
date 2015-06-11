@@ -21,6 +21,7 @@
     anim.duration = duration;
     
     return anim;
+    
 }
 
 +(CAKeyframeAnimation *)createSpring:(NSString *)keypath duration:(CFTimeInterval)duration usingSpringWithDamping:(CGFloat)damping initialSpringVelocity:(CGFloat)velocity fromValue:(id)fromValue toValue:(id)toValue{
