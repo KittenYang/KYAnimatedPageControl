@@ -11,8 +11,6 @@
 
 @interface Indicator()
 
-@property (nonatomic, strong) id colorObserveToken;
-
 @end
 
 @implementation Indicator

@@ -12,11 +12,11 @@
 
 @interface RotateRect()
 
-@property(nonatomic,assign)CGRect currentRect;
 
 @end
 
 @implementation RotateRect{
+    
     CGFloat index;
 }
 
@@ -88,10 +88,11 @@ static CGPathRef createPathRotatedAroundBoundingBoxCenter(CGPathRef path, CGFloa
     }
     
     
-
     [self setNeedsDisplay];
-
     
 }
+
+
+
 
 @end

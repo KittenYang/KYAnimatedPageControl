@@ -105,7 +105,6 @@
 -(void)tapAction:(UITapGestureRecognizer *)ges{
     
     NSAssert(self.bindScrollView != nil, @"You can not scroll without assigning bindScrollView");
-    
     CGPoint location = [ges locationInView:self];
     if (CGRectContainsPoint(self.line.frame, location)) {
         CGFloat ballDistance = self.frame.size.width / (self.pageCount - 1);
@@ -113,9 +112,16 @@
         if ((location.x - index*ballDistance) >= ballDistance/2) {
             index += 1;
         }
+        CGFloat HOWMANYDISTANCE =  ABS((self.line.selectedLineLength - index *((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1)))) / ((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1));
+        NSLog(@"howmanydistance:%f",HOWMANYDISTANCE/self.pageCount);
         
         [self.line animateSelectedLineToNewIndex:index+1];
         [self.bindScrollView setContentOffset:CGPointMake(self.bindScrollView.frame.size.width *index, 0) animated:YES];
+        
+        if ([self.indicator isKindOfClass:[GooeyCircle class]]) {
+            [self.indicator performSelector:@selector(restoreAnimation:) withObject:@(HOWMANYDISTANCE/self.pageCount) afterDelay:0.2];
+//            [self.indicator restoreAnimation];
+        }
         NSLog(@"DidSelected index:%ld",(long)index+1);
     }
     

@@ -9,7 +9,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KYSpringLayerAnimation.h"
 #import <QuartzCore/QuartzCore.h>
 
 @class KYAnimatedPageControl;
@@ -17,8 +16,11 @@
 
 @property(nonatomic,assign)CGFloat indicatorSize;
 @property(nonatomic,strong)UIColor *indicatorColor;
+@property(nonatomic,assign)CGRect currentRect;
+@property(nonatomic,assign)CGFloat lastContentOffset;
+
 
 -(void)animateIndicatorWithScrollView:(UIScrollView *)scrollView andIndicator:(KYAnimatedPageControl *)pgctl;
-
+-(void)restoreAnimation:(id)howmanydistance;
 
 @end

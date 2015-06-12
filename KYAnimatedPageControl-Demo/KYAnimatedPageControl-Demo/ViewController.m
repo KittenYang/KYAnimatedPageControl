@@ -28,8 +28,8 @@
     self.pageControl.selectedColor = [UIColor redColor];
     self.pageControl.bindScrollView = self.demoCollectionView;
     
-    self.pageControl.indicatorStyle = IndicatorStyleRotateRect;
-    self.pageControl.indicatorSize = 15;
+    self.pageControl.indicatorStyle = IndicatorStyleGooeyCircle;
+    self.pageControl.indicatorSize = 20;
     [self.pageControl display];
     [self.view addSubview:self.pageControl];
     
@@ -67,6 +67,20 @@
         [self.pageControl.pageControlLine animateSelectedLineWithScrollView:scrollView];
     }
     
+}
+
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    self.pageControl.indicator.lastContentOffset = scrollView.contentOffset.x;
+}
+
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+
+    if ( self.pageControl.indicatorStyle == IndicatorStyleGooeyCircle) {
+
+        [self.pageControl.indicator restoreAnimation:@(1.0/self.pageControl.pageCount)];
+    }
 }
 
 
