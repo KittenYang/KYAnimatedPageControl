@@ -6,12 +6,19 @@
 //  Copyright (c) 2015 Kitten Yang. All rights reserved.
 //
 
+
 #import "KYAnimatedPageControl.h"
+#import "GooeyCircle.h"
+#import "RotateRect.h"
 
 
 @interface KYAnimatedPageControl()
 
 @property(nonatomic,strong)Line *line;
+//Indicator-STYLE
+@property(nonatomic,strong)GooeyCircle *gooeyCircle;
+@property(nonatomic,strong)RotateRect  *rotateRect;
+
 
 @end
 
@@ -21,8 +28,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
-        [self addGestureRecognizer:self.tap];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+        [self addGestureRecognizer:tap];
 
     }
     return self;
@@ -35,7 +42,7 @@
     self.line = [Line layer];
     self.line.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     self.line.pageCount = self.pageCount;
-    self.line.selectedPage = self.selectedPage;
+    self.line.selectedPage = 1;
     self.line.unSelectedColor = self.unSelectedColor;
     self.line.selectedColor = self.selectedColor;
     self.line.bindScrollView = self.bindScrollView;
@@ -43,11 +50,41 @@
     self.line.contentsScale = [UIScreen mainScreen].scale;
     [self.line setNeedsDisplay];
     [self.layer addSublayer:self.line];
+    [self addIndicator];
+    
     
 }
 
 -(Line *)pageControlLine{
     return self.line;
+}
+
+
+#pragma mark -- PRIVATE Method
+
+-(void)addIndicator{
+    switch (self.indicatorStyle) {
+        case IndicatorStyleGooeyCircle:
+            
+            self.indicator = self.gooeyCircle;
+            break;
+
+        case IndicatorStyleRotateRect:
+            self.rotateRect = [RotateRect layer];
+            self.indicator = self.rotateRect;
+            
+            self.rotateRect.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+            self.rotateRect.indicatorSize  = self.indicatorSize;
+            self.rotateRect.contentsScale = [UIScreen mainScreen].scale;
+            [self.rotateRect animateIndicatorWithScrollView:self.bindScrollView andIndicator:self];
+            [self.layer insertSublayer:self.rotateRect above:self.line];
+            self.layer.masksToBounds = NO;
+            
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark -- UITapGestureRecognizer tapAction

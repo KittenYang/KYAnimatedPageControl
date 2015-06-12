@@ -13,16 +13,18 @@
 #import "KYSpringLayerAnimation.h"
 
 
-@interface Line(){
-    
-    CGFloat initialSelectedLineLength;
-    CGFloat lastContentOffsetX;
-}
+
+@interface Line()
 
 
 @end
 
-@implementation Line
+@implementation Line{
+
+    CGFloat initialSelectedLineLength; // 记录上一次选中的长度
+    CGFloat lastContentOffsetX;        // 记录上一次的contentOffSet.x
+
+}
 
 #pragma mark -- Initialize
 
@@ -41,7 +43,6 @@
         self.shouldShowProgressLine = YES;
         self.pageCount = 6;
         
-        self.masksToBounds = NO;
     }
     
     return self;
@@ -77,7 +78,7 @@
         self.selectedLineLength = self.pageCount > 1 ? (selectedPage-1) * DISTANCE : 0;
         
         initialSelectedLineLength = self.selectedLineLength;
-//        lastContentOffsetX = (self.selectedLineLength / DISTANCE) * self.bindScrollView.frame.size.width;
+
     }
 
 }
@@ -169,11 +170,11 @@
 
     CGFloat newLineLength = (newIndex-1) * DISTANCE;
     CABasicAnimation *anim = [KYSpringLayerAnimation create:@"selectedLineLength" duration:0.2 fromValue:@(self.selectedLineLength) toValue:@(newLineLength)];
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
 
     //Spring Animation
 //    CAKeyframeAnimation *anim = [KYSpringLayerAnimation createSpring:@"selectedLineLength" duration:1.0 usingSpringWithDamping:0.5 initialSpringVelocity:3 fromValue:@(self.selectedLineLength) toValue:@(newLineLength)];
     
-    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     self.selectedLineLength = newLineLength;
     anim.delegate = self;
     [self addAnimation:anim forKey:@"lineAnimation"];
@@ -184,9 +185,13 @@
 }
 
 
+
 //pan to scroll
 -(void)animateSelectedLineWithScrollView:(UIScrollView *)scrollView{
     
+    if (scrollView.contentOffset.x <= 0) {
+        return;
+    }
     
     CGFloat offSetX = scrollView.contentOffset.x - lastContentOffsetX;
     
@@ -203,7 +208,6 @@
     if (flag) {
         initialSelectedLineLength = self.selectedLineLength;
         lastContentOffsetX = (self.selectedLineLength / DISTANCE) * self.bindScrollView.frame.size.width;
-        NSLog(@"self.selectedLineLength / DISTANCE:%f",self.selectedLineLength / DISTANCE);
     }
     
 }

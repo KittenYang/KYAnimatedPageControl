@@ -24,10 +24,13 @@
     
     self.pageControl = [[KYAnimatedPageControl alloc]initWithFrame:CGRectMake(20, 450, 280, 50)];
     self.pageControl.pageCount = 8;
-    self.pageControl.selectedPage = 1;
+//    self.pageControl.selectedPage = 6;
     self.pageControl.unSelectedColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.pageControl.selectedColor = [UIColor orangeColor];
     self.pageControl.bindScrollView = self.demoCollectionView;
+    
+    self.pageControl.indicatorStyle = IndicatorStyleRotateRect;
+    self.pageControl.indicatorSize = 20;
     [self.pageControl display];
     [self.view addSubview:self.pageControl];
     
@@ -57,11 +60,11 @@
 #pragma mark -- UIScrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
-    if (scrollView.dragging) {
+    [self.pageControl.indicator animateIndicatorWithScrollView:scrollView andIndicator:self.pageControl];
+    if (scrollView.dragging || scrollView.isDecelerating || scrollView.tracking) {
         [self.pageControl.pageControlLine animateSelectedLineWithScrollView:scrollView];
     
     }
-
     
 }
 

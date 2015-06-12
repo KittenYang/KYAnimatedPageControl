@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+
 @interface Line : CALayer
 
 //page的个数
@@ -35,9 +36,9 @@
 //选中的长度
 @property(nonatomic,assign)CGFloat selectedLineLength;
 
-
 //绑定的滚动视图
 @property(nonatomic,strong)UIScrollView *bindScrollView;
+
 
 //直线动画接口:传入目标index作为参数
 -(void)animateSelectedLineToNewIndex:(NSInteger)newIndex;
