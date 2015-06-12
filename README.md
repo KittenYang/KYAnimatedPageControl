@@ -7,9 +7,9 @@
 ![Platform](https://img.shields.io/badge/platform-iOS-red.svg)
 
 
-A custom UIPageControl with multiple animations. With two animation styles:
+A custom **UIPageControl** with multiple animations. With two animation styles:
 
-自定义的UIPageControl。拥有两种动画样式:
+自定义的**UIPageControl**。拥有两种动画样式:
 
 * **GooeyCircle**
 
