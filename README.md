@@ -21,8 +21,10 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
   <img src="gooeyCircle.gif" alt="gooeyCircle" title="gooeyCircle" width = "320">
 </p>
 
+**Detail 细节**
 >The longer distance the bubble move,the severer gooey effect it has.
-> 细节：粘性小球会根据移动距离的大小拥有不同的弹性程度。移动距离越大，弹性效果越明显。
+
+>粘性小球会根据移动距离的大小拥有不同的弹性程度。移动距离越大，弹性效果越明显。
 
 * **RotateRect**
 * **旋转方块**
