@@ -15,7 +15,7 @@
 @interface Indicator : CALayer
 
 @property(nonatomic,assign)CGFloat indicatorSize;
-
+@property(nonatomic,strong)UIColor *indicatorColor;
 
 -(void)animateIndicatorWithScrollView:(UIScrollView *)scrollView andIndicator:(KYAnimatedPageControl *)pgctl;
 

@@ -70,8 +70,10 @@
             break;
 
         case IndicatorStyleRotateRect:
+            
             self.rotateRect = [RotateRect layer];
             self.indicator = self.rotateRect;
+            self.rotateRect.indicatorColor = self.selectedColor;
             
             self.rotateRect.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
             self.rotateRect.indicatorSize  = self.indicatorSize;

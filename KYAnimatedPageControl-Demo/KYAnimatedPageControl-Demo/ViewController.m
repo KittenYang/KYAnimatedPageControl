@@ -24,13 +24,12 @@
     
     self.pageControl = [[KYAnimatedPageControl alloc]initWithFrame:CGRectMake(20, 450, 280, 50)];
     self.pageControl.pageCount = 8;
-//    self.pageControl.selectedPage = 6;
     self.pageControl.unSelectedColor = [UIColor colorWithWhite:0.9 alpha:1];
-    self.pageControl.selectedColor = [UIColor orangeColor];
+    self.pageControl.selectedColor = [UIColor redColor];
     self.pageControl.bindScrollView = self.demoCollectionView;
     
     self.pageControl.indicatorStyle = IndicatorStyleRotateRect;
-    self.pageControl.indicatorSize = 20;
+    self.pageControl.indicatorSize = 15;
     [self.pageControl display];
     [self.view addSubview:self.pageControl];
     

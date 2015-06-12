@@ -17,18 +17,13 @@
 @end
 
 @implementation RotateRect{
-    CGAffineTransform initialTransform;
-    CAShapeLayer *indicatorLayer;
+    CGFloat index;
 }
 
+#pragma mark -- Initialize
 -(id)init{
     self = [super init];
     if (self) {
-
-        indicatorLayer = [CAShapeLayer layer];
-        indicatorLayer.transform = CATransform3DMakeRotation(M_PI_4, 0, 0, 1);
-        [self addSublayer:indicatorLayer];
-        
         
     }
     return self;
@@ -44,27 +39,30 @@
     return self;
 }
 
--(void)drawInContext:(CGContextRef)ctx{
 
-//    CGPoint center = CGPointMake((self.line.frame.size.width / (self.pageCount -1)) * (self.selectedPage - 1), self.line.frame.size.height/2);
-    
-//    CGMutablePathRef rectPath = CGPathCreateMutable();
-//    CGPathMoveToPoint(rectPath, nil, self.currentRect.origin.x, self.currentRect.origin.y);
-//    CGPathAddRect(rectPath, nil, self.currentRect);
-//    
-//
+#pragma mark -- override 
+-(void)drawInContext:(CGContextRef)ctx{
 
     
     UIBezierPath *rectPath = [UIBezierPath bezierPathWithRect:self.currentRect];
-//    [[UIColor blueColor] setFill];
-//    [path fill];
-    CGContextAddPath(ctx, rectPath.CGPath);
-    CGContextSetFillColorWithColor(ctx, [UIColor orangeColor].CGColor);
+    CGPathRef path = createPathRotatedAroundBoundingBoxCenter(rectPath.CGPath,index * M_PI * 2);
+    rectPath.CGPath  = path;
+    CGContextAddPath(ctx, path);
+    CGContextSetFillColorWithColor(ctx, self.indicatorColor.CGColor);
     CGContextFillPath(ctx);
 
-    indicatorLayer.path = rectPath.CGPath;
+    CGPathRelease(path);
 
+}
 
+static CGPathRef createPathRotatedAroundBoundingBoxCenter(CGPathRef path, CGFloat radians) {
+    CGRect bounds = CGPathGetBoundingBox(path); // might want to use CGPathGetPathBoundingBox
+    CGPoint center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    transform = CGAffineTransformTranslate(transform, center.x, center.y);
+    transform = CGAffineTransformRotate(transform, radians);
+    transform = CGAffineTransformTranslate(transform, -center.x, -center.y);
+    return CGPathCreateCopyByTransformingPath(path, &transform);
 }
 
 
@@ -74,6 +72,7 @@
     
 
     CGFloat originX = (scrollView.contentOffset.x / scrollView.frame.size.width) * (pgctl.frame.size.width / (pgctl.pageCount-1));
+    index = (scrollView.contentOffset.x / scrollView.frame.size.width) / (pgctl.pageCount - 1);
     
     if (originX - self.indicatorSize/2 <= 0) {
         
@@ -88,8 +87,10 @@
         self.currentRect = CGRectMake(originX - self.indicatorSize/2, self.frame.size.height/2-self.indicatorSize/2, self.indicatorSize, self.indicatorSize);
     }
     
+    
 
     [self setNeedsDisplay];
+
     
 }
 

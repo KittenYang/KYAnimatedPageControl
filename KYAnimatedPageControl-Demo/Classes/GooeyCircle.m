@@ -23,9 +23,5 @@
 }
 
 
--(void)animateIndicatorWithScrollView:(UIScrollView *)scrollView{
-    
-    
-}
 
 @end

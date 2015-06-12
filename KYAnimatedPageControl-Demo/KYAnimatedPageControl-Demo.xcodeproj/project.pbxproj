@@ -21,7 +21,6 @@
 		5F793B3E1B29965700A77B17 /* DemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F793B3D1B29965700A77B17 /* DemoCell.m */; };
 		5F793B421B2A881D00A77B17 /* RotateRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F793B411B2A881D00A77B17 /* RotateRect.m */; };
 		5F793B461B2A935E00A77B17 /* Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F793B451B2A935E00A77B17 /* Indicator.m */; };
-		5F793B4A1B2AEFA500A77B17 /* RotateRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F793B491B2AEFA500A77B17 /* RotateRectView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +61,6 @@
 		5F793B411B2A881D00A77B17 /* RotateRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RotateRect.m; path = Classes/RotateRect.m; sourceTree = SOURCE_ROOT; };
 		5F793B441B2A935E00A77B17 /* Indicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Indicator.h; path = Classes/Indicator.h; sourceTree = SOURCE_ROOT; };
 		5F793B451B2A935E00A77B17 /* Indicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Indicator.m; path = Classes/Indicator.m; sourceTree = SOURCE_ROOT; };
-		5F793B481B2AEFA500A77B17 /* RotateRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RotateRectView.h; path = Classes/RotateRectView.h; sourceTree = SOURCE_ROOT; };
-		5F793B491B2AEFA500A77B17 /* RotateRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RotateRectView.m; path = Classes/RotateRectView.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,8 +197,6 @@
 			children = (
 				5F793B401B2A881D00A77B17 /* RotateRect.h */,
 				5F793B411B2A881D00A77B17 /* RotateRect.m */,
-				5F793B481B2AEFA500A77B17 /* RotateRectView.h */,
-				5F793B491B2AEFA500A77B17 /* RotateRectView.m */,
 			);
 			name = RotateRect;
 			sourceTree = "<group>";
@@ -316,7 +311,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F49CE621B26C3BB00C304FE /* ViewController.m in Sources */,
-				5F793B4A1B2AEFA500A77B17 /* RotateRectView.m in Sources */,
 				5F793B3E1B29965700A77B17 /* DemoCell.m in Sources */,
 				5F793B421B2A881D00A77B17 /* RotateRect.m in Sources */,
 				5F793B371B28A1B200A77B17 /* Line.m in Sources */,
