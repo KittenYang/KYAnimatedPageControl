@@ -22,7 +22,7 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 </p>
 
 **Detail 细节**
->The longer distance the bubble move,the severer gooey effect it has.
+>The longer distance the bubble moves , the severer gooey effect it has.
 
 >粘性小球会根据移动距离的大小拥有不同的弹性程度。移动距离越大，弹性效果越明显。
 
