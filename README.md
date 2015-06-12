@@ -30,6 +30,10 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 </p>
 
 
+> You can not only scroll the UIScrollView subclasses such as UICollectionView ,UITableView and the **KYAnimatedPageControl** can automatically move with animation ,but also you can just **TAP** the target page in the **KYAnimatedPageControl**,and the scrollview will also automatically and intelligently scroll to the target position.
+
+>**KYAnimatedPageControl** 不仅可以在你滑动UIScrollView的时候自动以动画的形式移动，而且你还可以直接在**KYAnimatedPageControl**上的点击要滚动到的目标YE，此时除了**KYAnimatedPageControl**会以动画的形式移动，UIScrollView会很智能地滑到目标页面。
+
 ##Installation
 
 `pod 'KYAnimatedPageControl', '~> 1.0.1'`
