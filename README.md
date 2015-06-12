@@ -111,5 +111,3 @@ This project is under MIT License. See LICENSE file for more information.
 
 
 
-
-##*Hold on a second...*
