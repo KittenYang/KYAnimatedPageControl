@@ -53,7 +53,7 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ```
 
-###Add methods to UIScrollDelegate:
+###Add methods to UIScrollViewDelegate:
 
 ```objc
 
