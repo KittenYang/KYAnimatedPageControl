@@ -59,10 +59,12 @@
 #pragma mark -- UIScrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
+    //Indicator动画
     [self.pageControl.indicator animateIndicatorWithScrollView:scrollView andIndicator:self.pageControl];
+
     if (scrollView.dragging || scrollView.isDecelerating || scrollView.tracking) {
+        //背景线条动画
         [self.pageControl.pageControlLine animateSelectedLineWithScrollView:scrollView];
-    
     }
     
 }

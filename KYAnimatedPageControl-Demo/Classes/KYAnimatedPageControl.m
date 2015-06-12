@@ -64,9 +64,21 @@
 
 -(void)addIndicator{
     switch (self.indicatorStyle) {
+            
         case IndicatorStyleGooeyCircle:
             
+            self.gooeyCircle = [GooeyCircle layer];
             self.indicator = self.gooeyCircle;
+            self.gooeyCircle.indicatorColor = self.selectedColor;
+            
+            self.gooeyCircle.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+            self.gooeyCircle.indicatorSize  = self.indicatorSize;
+            self.gooeyCircle.contentsScale = [UIScreen mainScreen].scale;
+            [self.gooeyCircle animateIndicatorWithScrollView:self.bindScrollView andIndicator:self];
+            [self.layer insertSublayer:self.gooeyCircle above:self.line];
+            self.layer.masksToBounds = NO;
+
+        
             break;
 
         case IndicatorStyleRotateRect:

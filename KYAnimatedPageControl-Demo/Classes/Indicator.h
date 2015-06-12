@@ -9,6 +9,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KYSpringLayerAnimation.h"
 #import <QuartzCore/QuartzCore.h>
 
 @class KYAnimatedPageControl;
