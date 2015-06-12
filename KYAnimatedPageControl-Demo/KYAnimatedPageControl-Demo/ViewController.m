@@ -28,7 +28,7 @@
     self.pageControl.selectedColor = [UIColor redColor];
     self.pageControl.bindScrollView = self.demoCollectionView;
     
-    self.pageControl.indicatorStyle = IndicatorStyleGooeyCircle;
+    self.pageControl.indicatorStyle = IndicatorStyleRotateRect;
     self.pageControl.indicatorSize = 20;
     [self.pageControl display];
     [self.view addSubview:self.pageControl];

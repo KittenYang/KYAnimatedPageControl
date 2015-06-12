@@ -22,4 +22,13 @@
     }
 }
 
+
+-(void)animateIndicatorWithScrollView:(UIScrollView *)scrollView andIndicator:(KYAnimatedPageControl *)pgctl{
+    
+}
+
+-(void)restoreAnimation:(id)howmanydistance{
+    
+}
+
 @end
