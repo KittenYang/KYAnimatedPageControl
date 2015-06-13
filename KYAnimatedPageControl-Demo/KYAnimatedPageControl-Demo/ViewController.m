@@ -48,7 +48,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 
     DemoCell *democell = (DemoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"democell" forIndexPath:indexPath];
-    democell.cellNumLabel.text = [NSString stringWithFormat:@"%ld",indexPath.item + 1];
+    democell.cellNumLabel.text = [NSString stringWithFormat:@"%d",indexPath.item + 1];
     
     return democell;
     
