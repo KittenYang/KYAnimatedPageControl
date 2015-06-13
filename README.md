@@ -2,7 +2,7 @@
   <img src="logo.png" alt="KYAnimatedPageControl" title="KYAnimatedPageControl" width = "700">
 </p>
 
-![CocoaPods Version](https://img.shields.io/badge/pod-v1.0.1-brightgreen.svg)
+![CocoaPods Version](https://img.shields.io/badge/pod-v1.0.2-brightgreen.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-iOS-red.svg)
 
@@ -40,7 +40,7 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ##Installation
 
-`pod 'KYAnimatedPageControl', '~> 1.0.1'`
+`pod 'KYAnimatedPageControl', '~> 1.0.2'`
 
 
 ##Usage
@@ -53,8 +53,9 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
     self.pageControl.unSelectedColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.pageControl.selectedColor = [UIColor redColor];
     self.pageControl.bindScrollView = self.demoCollectionView;
+    self.pageControl.shouldShowProgressLine = YES;
     
-    self.pageControl.indicatorStyle = IndicatorStyleRotateRect;
+    self.pageControl.indicatorStyle = IndicatorStyleGooeyCircle;
     self.pageControl.indicatorSize = 20;
     [self.pageControl display];
     [self.view addSubview:self.pageControl];
@@ -81,21 +82,28 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
+    
     self.pageControl.indicator.lastContentOffset = scrollView.contentOffset.x;
+    
 }
+
 
 -(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
 
-    if ( self.pageControl.indicatorStyle == IndicatorStyleGooeyCircle) {
+    
+    [self.pageControl.indicator restoreAnimation:@(1.0/self.pageControl.pageCount)];
 
-        [self.pageControl.indicator restoreAnimation:@(1.0/self.pageControl.pageCount)];
-    }
 }
 
 ```
 
 ##版本
 ##Version
+
+
+###v1.0.2
+
+ 增加旋转方块的抖动效果
 
 ###v1.0.1 
 
