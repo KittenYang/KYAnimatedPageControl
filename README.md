@@ -38,6 +38,10 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 >**KYAnimatedPageControl** 不仅可以在你滑动UIScrollView的时候自动以动画的形式移动，而且你还可以直接在**KYAnimatedPageControl**上的点击要滚动到的目标页，此时除了**KYAnimatedPageControl**会以动画的形式移动，UIScrollView会很智能地滑到目标页面。
 
+##Blog
+
+[谈谈iOS中粘性动画以及果冻效果的实现](http://kittenyang.com/deformationandgooey/)
+
 ##Installation
 
 `pod 'KYAnimatedPageControl', '~> 1.0.2'`
