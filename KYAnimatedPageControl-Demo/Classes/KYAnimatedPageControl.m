@@ -116,13 +116,15 @@
         CGFloat HOWMANYDISTANCE =  ABS((self.line.selectedLineLength - index *((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1)))) / ((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1));
         NSLog(@"howmanydistance:%f",HOWMANYDISTANCE/self.pageCount);
         
+        //背景线条动画
         [self.line animateSelectedLineToNewIndex:index+1];
+
+        //scrollview 滑动
         [self.bindScrollView setContentOffset:CGPointMake(self.bindScrollView.frame.size.width *index, 0) animated:YES];
         
-//        if ([self.indicator isKindOfClass:[GooeyCircle class]]) {
-            [self.indicator performSelector:@selector(restoreAnimation:) withObject:@(HOWMANYDISTANCE/self.pageCount) afterDelay:0.2];
-//            [self.indicator restoreAnimation];
-//        }
+        //恢复动画
+        [self.indicator performSelector:@selector(restoreAnimation:) withObject:@(HOWMANYDISTANCE/self.pageCount) afterDelay:0.2];
+
         NSLog(@"DidSelected index:%ld",(long)index+1);
     }
     

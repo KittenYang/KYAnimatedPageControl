@@ -19,10 +19,7 @@
 
 @implementation RotateRect{
     
-//    CGFloat index;
     CGFloat lastcontentoffset;
-    
-    BOOL beginRestoreAnim;
     
 }
 
@@ -45,7 +42,6 @@
         self.lastContentOffset = layer.lastContentOffset;
         self.index = layer.index;
 
-        
     }
     return self;
 }
@@ -113,11 +109,9 @@ static CGPathRef createPathRotatedAroundBoundingBoxCenter(CGPathRef path, CGFloa
 
     CGFloat originX = (scrollView.contentOffset.x / scrollView.frame.size.width) * (pgctl.frame.size.width / (pgctl.pageCount-1));
     
-//    if (!beginRestoreAnim) {
+
+    _index = (scrollView.contentOffset.x / scrollView.frame.size.width);
     
-        _index = (scrollView.contentOffset.x / scrollView.frame.size.width);
-        
-//    }
     
     if (originX - self.indicatorSize/2 <= 0) {
         
@@ -152,25 +146,12 @@ static CGPathRef createPathRotatedAroundBoundingBoxCenter(CGPathRef path, CGFloa
 
     NSLog(@"howmanydistance : %f",[howmanydistance floatValue]);
     CAKeyframeAnimation *anim = [KYSpringLayerAnimation createSpring:@"index" duration:0.5 usingSpringWithDamping:0.5 initialSpringVelocity:3 fromValue:@(fromValue) toValue:@(0)];
-    anim.delegate = self;
     _index = 0;
     [self addAnimation:anim forKey:@"restoreAnimation"];
     
 }
 
 
-#pragma mark -- CAAnimation Delegate
--(void)animationDidStart:(CAAnimation *)anim{
-    
-    beginRestoreAnim = YES;
-}
-
-
--(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    if (flag) {
-        beginRestoreAnim = NO;
-    }
-}
 
 
 @end
