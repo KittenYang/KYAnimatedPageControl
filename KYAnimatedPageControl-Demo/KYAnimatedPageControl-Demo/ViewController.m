@@ -27,8 +27,9 @@
     self.pageControl.unSelectedColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.pageControl.selectedColor = [UIColor redColor];
     self.pageControl.bindScrollView = self.demoCollectionView;
+    self.pageControl.shouldShowProgressLine = YES;
     
-    self.pageControl.indicatorStyle = IndicatorStyleRotateRect;
+    self.pageControl.indicatorStyle = IndicatorStyleGooeyCircle;
     self.pageControl.indicatorSize = 20;
     [self.pageControl display];
     [self.view addSubview:self.pageControl];
@@ -72,15 +73,16 @@
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
+    
     self.pageControl.indicator.lastContentOffset = scrollView.contentOffset.x;
+    
 }
 
 -(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
 
-    if ( self.pageControl.indicatorStyle == IndicatorStyleGooeyCircle) {
+    
+    [self.pageControl.indicator restoreAnimation:@(1.0/self.pageControl.pageCount)];
 
-        [self.pageControl.indicator restoreAnimation:@(1.0/self.pageControl.pageCount)];
-    }
 }
 
 

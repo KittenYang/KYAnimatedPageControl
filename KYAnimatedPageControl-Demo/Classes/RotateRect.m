@@ -8,16 +8,22 @@
 
 #import "RotateRect.h"
 #import "KYAnimatedPageControl.h"
+#import "KYSpringLayerAnimation.h"
 
 
 @interface RotateRect()
 
+@property(nonatomic,assign)CGFloat index;
 
 @end
 
 @implementation RotateRect{
     
-    CGFloat index;
+//    CGFloat index;
+    CGFloat lastcontentoffset;
+    
+    BOOL beginRestoreAnim;
+    
 }
 
 #pragma mark -- Initialize
@@ -33,7 +39,12 @@
     self = [super initWithLayer:layer];
     if (self) {
         
-        self.indicatorSize = layer.indicatorSize;
+        self.indicatorSize  = layer.indicatorSize;
+        self.indicatorColor = layer.indicatorColor;
+        self.currentRect = layer.currentRect;
+        self.lastContentOffset = layer.lastContentOffset;
+        self.index = layer.index;
+
         
     }
     return self;
@@ -43,8 +54,9 @@
 #pragma mark -- override  class func
 -(void)drawInContext:(CGContextRef)ctx{
     
+    
     UIBezierPath *rectPath = [UIBezierPath bezierPathWithRect:self.currentRect];
-    CGPathRef path = createPathRotatedAroundBoundingBoxCenter(rectPath.CGPath, index * M_PI_2);
+    CGPathRef path = createPathRotatedAroundBoundingBoxCenter(rectPath.CGPath, self.scrollDirection == ScrollDirectionLeft ? _index * M_PI_2 : - _index * M_PI_2);
     rectPath.CGPath  = path;
     CGContextAddPath(ctx, path);
     CGContextSetFillColorWithColor(ctx, self.indicatorColor.CGColor);
@@ -54,6 +66,20 @@
     CGPathRelease(path);
 
 }
+
+
+
++(BOOL)needsDisplayForKey:(NSString *)key{
+    if ([key isEqual:@"index"]) {
+        return  YES;
+    }
+    
+    
+    return  [super needsDisplayForKey:key];
+}
+
+
+#pragma mark -- Helper Method
 
 static CGPathRef createPathRotatedAroundBoundingBoxCenter(CGPathRef path, CGFloat radians) {
     CGRect bounds = CGPathGetBoundingBox(path); // might want to use CGPathGetPathBoundingBox
@@ -66,13 +92,32 @@ static CGPathRef createPathRotatedAroundBoundingBoxCenter(CGPathRef path, CGFloa
 }
 
 
-
 #pragma mark -- override superclass method
+
 -(void)animateIndicatorWithScrollView:(UIScrollView *)scrollView andIndicator:(KYAnimatedPageControl *)pgctl{
     
+    
+    if (lastcontentoffset > scrollView.contentOffset.x ){
+        
+        self.scrollDirection = ScrollDirectionRight;
+        
+    }else if (lastcontentoffset < scrollView.contentOffset.x){
+        
+        self.scrollDirection = ScrollDirectionLeft;
+        
+    }
+    
+    lastcontentoffset = scrollView.contentOffset.x;
+    
+
 
     CGFloat originX = (scrollView.contentOffset.x / scrollView.frame.size.width) * (pgctl.frame.size.width / (pgctl.pageCount-1));
-    index = (scrollView.contentOffset.x / scrollView.frame.size.width);
+    
+//    if (!beginRestoreAnim) {
+    
+        _index = (scrollView.contentOffset.x / scrollView.frame.size.width);
+        
+//    }
     
     if (originX - self.indicatorSize/2 <= 0) {
         
@@ -93,6 +138,39 @@ static CGPathRef createPathRotatedAroundBoundingBoxCenter(CGPathRef path, CGFloa
 }
 
 
+-(void)restoreAnimation:(id)howmanydistance{
+    
+    CGFloat fromValue = 0.0;
+    if (self.scrollDirection == ScrollDirectionLeft) {
+        
+        fromValue = 0.5+[howmanydistance floatValue]* 1.5;
+        
+    }else if (self.scrollDirection == ScrollDirectionRight)  {
+        
+        fromValue = - (0.5+[howmanydistance floatValue]* 1.5);
+    }
+
+    NSLog(@"howmanydistance : %f",[howmanydistance floatValue]);
+    CAKeyframeAnimation *anim = [KYSpringLayerAnimation createSpring:@"index" duration:0.5 usingSpringWithDamping:0.5 initialSpringVelocity:3 fromValue:@(fromValue) toValue:@(0)];
+    anim.delegate = self;
+    _index = 0;
+    [self addAnimation:anim forKey:@"restoreAnimation"];
+    
+}
+
+
+#pragma mark -- CAAnimation Delegate
+-(void)animationDidStart:(CAAnimation *)anim{
+    
+    beginRestoreAnim = YES;
+}
+
+
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    if (flag) {
+        beginRestoreAnim = NO;
+    }
+}
 
 
 @end

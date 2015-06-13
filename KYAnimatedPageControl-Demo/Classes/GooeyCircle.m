@@ -15,6 +15,8 @@
 
 @interface GooeyCircle()
 
+@property(nonatomic,assign)CGFloat factor;
+
 
 @end
 
@@ -65,9 +67,9 @@
     
     
     CGPoint pointA = CGPointMake(rectCenter.x ,self.currentRect.origin.y + extra);
-    CGPoint pointB = CGPointMake(_scrollDirection == ScrollDirectionLeft ? rectCenter.x + self.currentRect.size.width/2 : rectCenter.x + self.currentRect.size.width/2 + extra*2 ,rectCenter.y);
+    CGPoint pointB = CGPointMake(self.scrollDirection == ScrollDirectionLeft ? rectCenter.x + self.currentRect.size.width/2 : rectCenter.x + self.currentRect.size.width/2 + extra*2 ,rectCenter.y);
     CGPoint pointC = CGPointMake(rectCenter.x ,rectCenter.y + self.currentRect.size.height/2 - extra);
-    CGPoint pointD = CGPointMake(_scrollDirection == ScrollDirectionLeft ? self.currentRect.origin.x - extra*2 : self.currentRect.origin.x, rectCenter.y);
+    CGPoint pointD = CGPointMake(self.scrollDirection == ScrollDirectionLeft ? self.currentRect.origin.x - extra*2 : self.currentRect.origin.x, rectCenter.y);
 
     CGPoint c1 = CGPointMake(pointA.x + offset, pointA.y);
     CGPoint c2 = CGPointMake(pointB.x, pointB.y - offset);
@@ -102,17 +104,27 @@
 }
 
 
++(BOOL)needsDisplayForKey:(NSString *)key{
+    if ([key isEqual:@"factor"]) {
+        return  YES;
+    }
+    
+    
+    return  [super needsDisplayForKey:key];
+}
+
+
 
 
 #pragma mark -- override superclass method
 -(void)animateIndicatorWithScrollView:(UIScrollView *)scrollView andIndicator:(KYAnimatedPageControl *)pgctl{
     
     if (lastcontentoffset > scrollView.contentOffset.x){
-        _scrollDirection = ScrollDirectionRight;
+        self.scrollDirection = ScrollDirectionRight;
 
     }else if (lastcontentoffset < scrollView.contentOffset.x){
         
-        _scrollDirection = ScrollDirectionLeft;
+        self.scrollDirection = ScrollDirectionLeft;
 
     }
     
@@ -149,15 +161,14 @@
 
 -(void)restoreAnimation:(id)howmanydistance{
     
-//    NSLog(@"howmanydistance:%f",howmanydistance);
     CAKeyframeAnimation *anim = [KYSpringLayerAnimation createSpring:@"factor" duration:0.8 usingSpringWithDamping:0.5 initialSpringVelocity:3 fromValue:@(0.5+[howmanydistance floatValue]* 1.5) toValue:@(0)];
     anim.delegate = self;
     self.factor = 0;
     [self addAnimation:anim forKey:@"restoreAnimation"];
-    
 
 }
 
+#pragma mark -- CAAnimation Delegate
 -(void)animationDidStart:(CAAnimation *)anim{
 
     beginGooeyAnim = YES;
@@ -171,14 +182,6 @@
 }
 
 
-+(BOOL)needsDisplayForKey:(NSString *)key{
-    if ([key isEqual:@"factor"]) {
-        return  YES;
-    }
-    
-    
-    return  [super needsDisplayForKey:key];
-}
 
 
 @end

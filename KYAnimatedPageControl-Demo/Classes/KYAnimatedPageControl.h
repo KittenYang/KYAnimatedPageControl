@@ -20,10 +20,10 @@ typedef enum : NSUInteger {
 
 
 //----READWRITE----
-//page的个数
+//page的个数 The count of all pages
 @property(nonatomic,assign)NSInteger pageCount;
 
-//选中的item  1,2,3,4
+//第一次显示的page 第一页为1,类推 2,3,4...  The default selected page ,if you wanna show fourth page, set 4
 @property(nonatomic,assign)NSInteger selectedPage;
 
 //未选中的颜色
@@ -31,6 +31,9 @@ typedef enum : NSUInteger {
 
 //选中的颜色
 @property(nonatomic,strong)UIColor *selectedColor;
+
+//是否显示填充进度条
+@property(nonatomic,assign)BOOL shouldShowProgressLine;
 
 //绑定的滚动视图
 @property(nonatomic,strong)UIScrollView *bindScrollView;
@@ -41,7 +44,7 @@ typedef enum : NSUInteger {
 //Indicator大小
 @property(nonatomic,assign)CGFloat indicatorSize;
 
-//Indicator
+//Indicator 只读!  Readonly!
 @property(nonatomic,strong)Indicator *indicator;
 
 

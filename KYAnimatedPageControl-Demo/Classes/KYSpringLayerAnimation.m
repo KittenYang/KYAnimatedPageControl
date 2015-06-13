@@ -55,6 +55,7 @@
         
         CGFloat x = (CGFloat)point / (CGFloat)numOfPoints;
         CGFloat value = [toValue floatValue] - d_value * (pow(M_E, -damping * x) * cos(velocity * x)); // y = 1-e^{-5x} * cos(30x)
+        
 //        NSLog(@"toValue:%f,diff:%f",[toValue floatValue],d_value * (pow(M_E, -damping * x) * cos(velocity * x)));
         values[point] = @(value);
     }
@@ -65,11 +66,6 @@
 }
 
 
-+(CGFloat)normalizeAnimationValues:(CGFloat)x usingSpringWithDamping:(CGFloat)damping initialSpringVelocity:(CGFloat)velocity{
-
-    return pow(M_E, -damping * x) + cos(velocity * x);
-    
-}
 
 
 

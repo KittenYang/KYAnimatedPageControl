@@ -43,6 +43,7 @@
     self.line.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     self.line.pageCount = self.pageCount;
     self.line.selectedPage = 1;
+    self.line.shouldShowProgressLine = self.shouldShowProgressLine;
     self.line.unSelectedColor = self.unSelectedColor;
     self.line.selectedColor = self.selectedColor;
     self.line.bindScrollView = self.bindScrollView;
@@ -118,10 +119,10 @@
         [self.line animateSelectedLineToNewIndex:index+1];
         [self.bindScrollView setContentOffset:CGPointMake(self.bindScrollView.frame.size.width *index, 0) animated:YES];
         
-        if ([self.indicator isKindOfClass:[GooeyCircle class]]) {
+//        if ([self.indicator isKindOfClass:[GooeyCircle class]]) {
             [self.indicator performSelector:@selector(restoreAnimation:) withObject:@(HOWMANYDISTANCE/self.pageCount) afterDelay:0.2];
 //            [self.indicator restoreAnimation];
-        }
+//        }
         NSLog(@"DidSelected index:%ld",(long)index+1);
     }
     
