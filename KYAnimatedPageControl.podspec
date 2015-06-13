@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "KYAnimatedPageControl"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "带有动画的自定义PageControl。两种动画样式：粘性小球和旋转方块"
 
   s.description  = <<-DESC
