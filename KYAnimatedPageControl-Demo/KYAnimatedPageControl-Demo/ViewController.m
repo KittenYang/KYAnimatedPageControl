@@ -31,6 +31,7 @@
     
     self.pageControl.indicatorStyle = IndicatorStyleGooeyCircle;
     self.pageControl.indicatorSize = 20;
+    self.pageControl.swipeEnable = YES;
     [self.pageControl display];
     [self.view addSubview:self.pageControl];
     
@@ -98,7 +99,10 @@
     [self.pageControl animateToIndex:3];
 }
 
-
+- (IBAction)swipeEnableChanged:(UISwitch *)sender
+{
+    self.pageControl.swipeEnable = sender.isOn;
+}
 
 
 
