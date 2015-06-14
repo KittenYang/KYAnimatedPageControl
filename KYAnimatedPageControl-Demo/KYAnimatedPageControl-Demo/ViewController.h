@@ -10,6 +10,7 @@
 
 @interface ViewController : UIViewController
 
+- (IBAction)animateToForthPage:(id)sender;
 
 @end
 
