@@ -19,6 +19,7 @@
 @property(nonatomic,strong)GooeyCircle *gooeyCircle;
 @property(nonatomic,strong)RotateRect  *rotateRect;
 
+@property (nonatomic) NSInteger lastIndex;
 
 @end
 
@@ -30,6 +31,8 @@
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
         [self addGestureRecognizer:tap];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+        [self addGestureRecognizer:pan];
 
     }
     return self;
@@ -148,6 +151,24 @@
     NSLog(@"DidSelected index:%ld",(long)index+1);
 }
 
-
+- (void)panAction:(UIPanGestureRecognizer *)pan {
+    if (!_swipeEnable) {
+        return;
+    }
+    
+    CGPoint location = [pan locationInView:self];
+    if (CGRectContainsPoint(self.line.frame, location)) {
+        CGFloat ballDistance = self.frame.size.width / (self.pageCount - 1);
+        NSInteger index =  location.x / ballDistance;
+        if ((location.x - index*ballDistance) >= ballDistance/2) {
+            index += 1;
+        }
+        
+        if (index != _lastIndex) {
+            [self animateToIndex:index];
+            _lastIndex = index;
+        }
+    }
+}
 
 @end
