@@ -38,6 +38,9 @@ typedef enum : NSUInteger {
 //绑定的滚动视图
 @property(nonatomic,strong)UIScrollView *bindScrollView;
 
+//Possible to swipe (Pan gesture recognize)
+@property(nonatomic,assign)BOOL swipeEnable;
+
 //Indicator样式
 @property(nonatomic,assign)IndicatorStyle indicatorStyle;
 
@@ -56,5 +59,8 @@ typedef enum : NSUInteger {
 
 //设置完所有参数后，启动这个方法 
 -(void)display;
+
+// Animate to index
+-(void)animateToIndex:(NSInteger)index;
 
 @end

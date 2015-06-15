@@ -19,6 +19,7 @@
 @property(nonatomic,strong)GooeyCircle *gooeyCircle;
 @property(nonatomic,strong)RotateRect  *rotateRect;
 
+@property (nonatomic) NSInteger lastIndex;
 
 @end
 
@@ -30,6 +31,8 @@
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
         [self addGestureRecognizer:tap];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+        [self addGestureRecognizer:pan];
 
     }
     return self;
@@ -130,8 +133,42 @@
     
 }
 
+-(void)animateToIndex:(NSInteger)index
+{
+    NSAssert(self.bindScrollView != nil, @"You can not scroll without assigning bindScrollView");
+    CGFloat HOWMANYDISTANCE =  ABS((self.line.selectedLineLength - index *((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1)))) / ((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1));
+    NSLog(@"howmanydistance:%f",HOWMANYDISTANCE/self.pageCount);
+    
+    //背景线条动画
+    [self.line animateSelectedLineToNewIndex:index+1];
+    
+    //scrollview 滑动
+    [self.bindScrollView setContentOffset:CGPointMake(self.bindScrollView.frame.size.width *index, 0) animated:YES];
+    
+    //恢复动画
+    [self.indicator performSelector:@selector(restoreAnimation:) withObject:@(HOWMANYDISTANCE/self.pageCount) afterDelay:0.2];
+    
+    NSLog(@"DidSelected index:%ld",(long)index+1);
+}
 
-
-
+- (void)panAction:(UIPanGestureRecognizer *)pan {
+    if (!_swipeEnable) {
+        return;
+    }
+    
+    CGPoint location = [pan locationInView:self];
+    if (CGRectContainsPoint(self.line.frame, location)) {
+        CGFloat ballDistance = self.frame.size.width / (self.pageCount - 1);
+        NSInteger index =  location.x / ballDistance;
+        if ((location.x - index*ballDistance) >= ballDistance/2) {
+            index += 1;
+        }
+        
+        if (index != _lastIndex) {
+            [self animateToIndex:index];
+            _lastIndex = index;
+        }
+    }
+}
 
 @end

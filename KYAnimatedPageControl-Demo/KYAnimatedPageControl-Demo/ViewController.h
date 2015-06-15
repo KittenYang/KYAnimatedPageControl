@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+- (IBAction)animateToForthPage:(id)sender;
+- (IBAction)swipeEnableChanged:(UISwitch *)sender;
 
 @end
 

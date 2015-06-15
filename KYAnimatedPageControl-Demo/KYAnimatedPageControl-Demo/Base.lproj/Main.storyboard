@@ -66,11 +66,46 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="DaH-oL-Vf7"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ele-OK-NhY">
+                                <rect key="frame" x="423" y="562" width="161" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="161" id="5Fp-kE-4Vl"/>
+                                    <constraint firstAttribute="height" constant="30" id="BQD-rf-F0X"/>
+                                </constraints>
+                                <state key="normal" title="Animate to Page 4">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="animateToForthPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AeS-0n-Q9C"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe enable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1b-3k-TMI">
+                                <rect key="frame" x="16" y="571" width="104" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="IxI-aG-ulo"/>
+                                    <constraint firstAttribute="width" constant="104" id="ix6-Pl-CsQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OV4-YL-pk2">
+                                <rect key="frame" x="128" y="566" width="51" height="31"/>
+                                <connections>
+                                    <action selector="swipeEnableChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="hAA-JU-KvE"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ele-OK-NhY" secondAttribute="bottom" constant="8" id="2sF-bn-F9N"/>
                             <constraint firstAttribute="centerX" secondItem="XhU-ad-KPF" secondAttribute="centerX" id="KPh-jB-TTf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OV4-YL-pk2" secondAttribute="bottom" constant="3" id="QjJ-Bi-zq9"/>
+                            <constraint firstItem="OV4-YL-pk2" firstAttribute="leading" secondItem="e1b-3k-TMI" secondAttribute="trailing" constant="8" id="XM9-KL-xNX"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="e1b-3k-TMI" secondAttribute="bottom" constant="8" id="Yfy-0N-TpF"/>
                             <constraint firstItem="XhU-ad-KPF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="b0M-UD-wsf"/>
+                            <constraint firstItem="e1b-3k-TMI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="kJi-aj-GlS"/>
+                            <constraint firstAttribute="trailing" secondItem="Ele-OK-NhY" secondAttribute="trailing" constant="16" id="ljc-2i-ftC"/>
                         </constraints>
                     </view>
                     <connections>
