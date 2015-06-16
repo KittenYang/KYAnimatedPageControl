@@ -35,6 +35,10 @@
     [self.pageControl display];
     [self.view addSubview:self.pageControl];
     
+    self.pageControl.didSelectIndexBlock = ^(NSInteger index){
+        NSLog(@"Did Selected index : %ld",(long)index);
+    };
+    
 }
 
 
