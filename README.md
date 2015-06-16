@@ -66,10 +66,9 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ```
 
-###Add methods to UIScrollViewDelegate:
+###Must implement methods in UIScrollViewDelegate:
 
 ```objc
-
 #pragma mark -- UIScrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
@@ -91,12 +90,15 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
     
 }
 
-
 -(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
 
     
     [self.pageControl.indicator restoreAnimation:@(1.0/self.pageControl.pageCount)];
 
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    self.pageControl.indicator.lastContentOffset = scrollView.contentOffset.x;
 }
 
 ```
