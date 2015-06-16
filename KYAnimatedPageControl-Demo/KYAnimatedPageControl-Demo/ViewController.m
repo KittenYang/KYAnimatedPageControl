@@ -86,6 +86,11 @@
 
 }
 
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    self.pageControl.indicator.lastContentOffset = scrollView.contentOffset.x;
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
