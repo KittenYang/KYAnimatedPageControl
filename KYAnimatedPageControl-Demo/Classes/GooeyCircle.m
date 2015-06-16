@@ -23,8 +23,6 @@
 @implementation GooeyCircle{
     
     
-    CGFloat lastcontentoffset;
-    
     BOOL beginGooeyAnim;
 }
 
@@ -63,6 +61,7 @@
 
     CGPoint rectCenter = CGPointMake(self.currentRect.origin.x + self.currentRect.size.width/2 , self.currentRect.origin.y + self.currentRect.size.height/2);
     
+    //8个控制点实际的偏移距离。 The real distance of 8 control points.
     CGFloat extra = (self.currentRect.size.width * 2 / 5) * _factor;
     
     
@@ -73,13 +72,13 @@
 
     CGPoint c1 = CGPointMake(pointA.x + offset, pointA.y);
     CGPoint c2 = CGPointMake(pointB.x, pointB.y - offset);
-
+    
     CGPoint c3 = CGPointMake(pointB.x, pointB.y + offset);
     CGPoint c4 = CGPointMake(pointC.x + offset, pointC.y);
-
+    
     CGPoint c5 = CGPointMake(pointC.x - offset, pointC.y);
     CGPoint c6 = CGPointMake(pointD.x, pointD.y + offset);
-
+    
     CGPoint c7 = CGPointMake(pointD.x, pointD.y - offset);
     CGPoint c8 = CGPointMake(pointA.x - offset, pointA.y);
 
@@ -88,7 +87,6 @@
     UIBezierPath* ovalPath = [UIBezierPath bezierPath];
 
     [ovalPath moveToPoint: pointA];
-
     [ovalPath addCurveToPoint:pointB controlPoint1:c1 controlPoint2:c2];
     [ovalPath addCurveToPoint:pointC controlPoint1:c3 controlPoint2:c4];
     [ovalPath addCurveToPoint:pointD controlPoint1:c5 controlPoint2:c6];
@@ -119,16 +117,13 @@
 #pragma mark -- override superclass method
 -(void)animateIndicatorWithScrollView:(UIScrollView *)scrollView andIndicator:(KYAnimatedPageControl *)pgctl{
     
-    if (lastcontentoffset > scrollView.contentOffset.x){
-        self.scrollDirection = ScrollDirectionRight;
-
-    }else if (lastcontentoffset < scrollView.contentOffset.x){
-        
+    
+    if ((scrollView.contentOffset.x - self.lastContentOffset) >= 0 && (scrollView.contentOffset.x - self.lastContentOffset) <= (scrollView.frame.size.width)/2) {
         self.scrollDirection = ScrollDirectionLeft;
-
+    }else if ((scrollView.contentOffset.x - self.lastContentOffset) <= 0 && (scrollView.contentOffset.x - self.lastContentOffset) >= -(scrollView.frame.size.width)/2){
+        self.scrollDirection = ScrollDirectionRight;
     }
     
-    lastcontentoffset = scrollView.contentOffset.x;
 
     if (!beginGooeyAnim) {
         

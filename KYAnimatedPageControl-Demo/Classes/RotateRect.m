@@ -17,11 +17,7 @@
 
 @end
 
-@implementation RotateRect{
-    
-    CGFloat lastcontentoffset;
-    
-}
+@implementation RotateRect
 
 #pragma mark -- Initialize
 -(id)init{
@@ -52,7 +48,7 @@
     
     
     UIBezierPath *rectPath = [UIBezierPath bezierPathWithRect:self.currentRect];
-    CGPathRef path = createPathRotatedAroundBoundingBoxCenter(rectPath.CGPath, self.scrollDirection == ScrollDirectionLeft ? _index * M_PI_2 : - _index * M_PI_2);
+    CGPathRef path = createPathRotatedAroundBoundingBoxCenter(rectPath.CGPath, _index * M_PI_2 );
     rectPath.CGPath  = path;
     CGContextAddPath(ctx, path);
     CGContextSetFillColorWithColor(ctx, self.indicatorColor.CGColor);
@@ -92,19 +88,6 @@ static CGPathRef createPathRotatedAroundBoundingBoxCenter(CGPathRef path, CGFloa
 
 -(void)animateIndicatorWithScrollView:(UIScrollView *)scrollView andIndicator:(KYAnimatedPageControl *)pgctl{
     
-    
-    if (lastcontentoffset > scrollView.contentOffset.x ){
-        
-        self.scrollDirection = ScrollDirectionRight;
-        
-    }else if (lastcontentoffset < scrollView.contentOffset.x){
-        
-        self.scrollDirection = ScrollDirectionLeft;
-        
-    }
-    
-    lastcontentoffset = scrollView.contentOffset.x;
-    
 
 
     CGFloat originX = (scrollView.contentOffset.x / scrollView.frame.size.width) * (pgctl.frame.size.width / (pgctl.pageCount-1));
@@ -134,20 +117,20 @@ static CGPathRef createPathRotatedAroundBoundingBoxCenter(CGPathRef path, CGFloa
 
 -(void)restoreAnimation:(id)howmanydistance{
     
-    CGFloat fromValue = 0.0;
-    if (self.scrollDirection == ScrollDirectionLeft) {
-        
-        fromValue = 0.5+[howmanydistance floatValue]* 1.5;
-        
-    }else if (self.scrollDirection == ScrollDirectionRight)  {
-        
-        fromValue = - (0.5+[howmanydistance floatValue]* 1.5);
-    }
-
-    NSLog(@"howmanydistance : %f",[howmanydistance floatValue]);
-    CAKeyframeAnimation *anim = [KYSpringLayerAnimation createSpring:@"index" duration:0.5 usingSpringWithDamping:0.5 initialSpringVelocity:3 fromValue:@(fromValue) toValue:@(0)];
-    _index = 0;
-    [self addAnimation:anim forKey:@"restoreAnimation"];
+//    CGFloat fromValue = 0.0;
+//    if (self.scrollDirection == ScrollDirectionLeft) {
+//        
+//        fromValue = 0.5+[howmanydistance floatValue]* 1.5;
+//        
+//    }else if (self.scrollDirection == ScrollDirectionRight)  {
+//        
+//        fromValue = - (0.5+[howmanydistance floatValue]* 1.5);
+//    }
+//
+//    NSLog(@"howmanydistance : %f",[howmanydistance floatValue]);
+//    CAKeyframeAnimation *anim = [KYSpringLayerAnimation createSpring:@"index" duration:0.5 usingSpringWithDamping:0.5 initialSpringVelocity:3 fromValue:@(fromValue) toValue:@(0)];
+//    _index = 0;
+//    [self addAnimation:anim forKey:@"restoreAnimation"];
     
 }
 
