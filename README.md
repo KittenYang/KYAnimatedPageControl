@@ -108,7 +108,7 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ###v1.0.4
 
- 增加点击某个Index的回调。
+ * 增加点击某个Index的回调。
 
 
 ###v1.0.3
@@ -121,15 +121,15 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ###v1.0.2
 
- 增加旋转方块的抖动效果
+ * 增加旋转方块的抖动效果
 
 ###v1.0.1 
 
- 增加粘性小球样式
+ * 增加粘性小球样式
  
 ###v1.0.0
   
-  第一次提交：完成旋转方块样式
+  * 第一次提交：完成旋转方块样式
   
 
 ##License
