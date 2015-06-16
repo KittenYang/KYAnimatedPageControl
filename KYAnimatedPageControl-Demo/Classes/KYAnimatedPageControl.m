@@ -19,6 +19,7 @@
 @property(nonatomic,strong)GooeyCircle *gooeyCircle;
 @property(nonatomic,strong)RotateRect  *rotateRect;
 
+
 @property (nonatomic) NSInteger lastIndex;
 
 @end
@@ -128,7 +129,7 @@
         //恢复动画
         [self.indicator performSelector:@selector(restoreAnimation:) withObject:@(HOWMANYDISTANCE/self.pageCount) afterDelay:0.2];
 
-        NSLog(@"DidSelected index:%ld",(long)index+1);
+        self.didSelectIndexBlock(index+1);
     }
     
 }

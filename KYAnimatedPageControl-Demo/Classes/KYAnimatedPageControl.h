@@ -63,4 +63,8 @@ typedef enum : NSUInteger {
 // Animate to index
 -(void)animateToIndex:(NSInteger)index;
 
+//选中某个index的回调 DidSelecteSomeIndex Block
+@property(nonatomic,copy)void(^didSelectIndexBlock)(NSInteger index);
+
+
 @end
