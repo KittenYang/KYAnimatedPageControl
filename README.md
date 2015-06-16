@@ -2,7 +2,7 @@
   <img src="logo.png" alt="KYAnimatedPageControl" title="KYAnimatedPageControl" width = "700">
 </p>
 
-![CocoaPods Version](https://img.shields.io/badge/pod-v1.0.2-brightgreen.svg)
+![CocoaPods Version](https://img.shields.io/badge/pod-v1.0.3-brightgreen.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-iOS-red.svg)
 
@@ -44,7 +44,7 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ##Installation
 
-`pod 'KYAnimatedPageControl', '~> 1.0.2'`
+`pod 'KYAnimatedPageControl', '~> 1.0.3'`
 
 
 ##Usage
@@ -103,6 +103,13 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ##版本
 ##Version
+
+###v1.0.3
+
+ * 取消方块的结束抖动效果（需要可打开注释的代码）
+ * 改进判断滑动方向的算法。由之前的（当前contentOffset.x - 上一次的contentOffset.x）来判断方向，改成现在的（当前contentOffset.x - 上一次的contentOffset.x）是否划过一半来判断方向。
+ * 增加UIPanGesture。现在可以拖动Indicator了，小球会跟着你的手指跑了。通过新增的`@property(nonatomic,assign)BOOL swipeEnable;` 接口可以选择是否开启拖动手势。
+ * 增加一个接口方法。调用可以快速跳到目标页而不用点击。 `-(void)animateToIndex:(NSInteger)index;`
 
 
 ###v1.0.2
