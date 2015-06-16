@@ -2,7 +2,7 @@
   <img src="logo.png" alt="KYAnimatedPageControl" title="KYAnimatedPageControl" width = "700">
 </p>
 
-![CocoaPods Version](https://img.shields.io/badge/pod-v1.0.3-brightgreen.svg)
+![CocoaPods Version](https://img.shields.io/badge/pod-v1.0.4-brightgreen.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-iOS-red.svg)
 
@@ -44,7 +44,7 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ##Installation
 
-`pod 'KYAnimatedPageControl', '~> 1.0.3'`
+`pod 'KYAnimatedPageControl', '~> 1.0.4'`
 
 
 ##Usage
@@ -105,6 +105,11 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ##版本
 ##Version
+
+###v1.0.4
+
+ 增加点击某个Index的回调。
+
 
 ###v1.0.3
 
