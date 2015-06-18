@@ -129,7 +129,9 @@
         //恢复动画
         [self.indicator performSelector:@selector(restoreAnimation:) withObject:@(HOWMANYDISTANCE/self.pageCount) afterDelay:0.2];
 
-        self.didSelectIndexBlock(index+1);
+        if(self.didSelectIndexBlock) {
+            self.didSelectIndexBlock(index+1);
+        }
     }
     
 }
