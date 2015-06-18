@@ -2,7 +2,7 @@
   <img src="logo.png" alt="KYAnimatedPageControl" title="KYAnimatedPageControl" width = "700">
 </p>
 
-![CocoaPods Version](https://img.shields.io/badge/pod-v1.0.4-brightgreen.svg)
+![CocoaPods Version](https://img.shields.io/badge/pod-v1.0.5-brightgreen.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-iOS-red.svg)
 
@@ -43,7 +43,7 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ##Installation
 
-`pod 'KYAnimatedPageControl', '~> 1.0.4'`
+`pod 'KYAnimatedPageControl', '~> 1.0.5'`
 
 
 ##Usage
@@ -60,7 +60,6 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
     
     self.pageControl.indicatorStyle = IndicatorStyleGooeyCircle;
     self.pageControl.indicatorSize = 20;
-    [self.pageControl display];
     [self.view addSubview:self.pageControl];
 
 ```
@@ -104,6 +103,11 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ##版本
 ##Version
+
+###v1.0.5
+
+ * 取消`-(void)display`方法的显式调用,使用更简单。
+ * fix a bug of `didSelectIndexBlock`
 
 ###v1.0.4
 
