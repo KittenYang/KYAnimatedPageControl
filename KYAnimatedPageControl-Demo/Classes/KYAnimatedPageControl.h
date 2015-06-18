@@ -55,11 +55,6 @@ typedef enum : NSUInteger {
 //直线Layer
 @property(nonatomic,readonly)Line *pageControlLine;
 
-
-
-//设置完所有参数后，启动这个方法 
--(void)display;
-
 // Animate to index
 -(void)animateToIndex:(NSInteger)index;
 

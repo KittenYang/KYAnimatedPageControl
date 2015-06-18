@@ -30,80 +30,88 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
         [self addGestureRecognizer:tap];
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
         [self addGestureRecognizer:pan];
-
+        
+        self.layer.masksToBounds = NO;
     }
     return self;
 }
 
+- (void)willMoveToSuperview:(UIView *)newSuperview {
+    [self.layer addSublayer:self.line];
+    [self.layer insertSublayer:self.gooeyCircle above:self.line];
+    [self.line setNeedsDisplay];
+}
+
+#pragma mark - Helper
+
+- (Line *)line {
+    if (!_line) {
+        _line = [Line layer];
+        _line.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        _line.pageCount = self.pageCount;
+        _line.selectedPage = 1;
+        _line.shouldShowProgressLine = self.shouldShowProgressLine;
+        _line.unSelectedColor = self.unSelectedColor;
+        _line.selectedColor = self.selectedColor;
+        _line.bindScrollView = self.bindScrollView;
+        _line.contentsScale = [UIScreen mainScreen].scale;
+    }
+    
+    return _line;
+}
+
+- (GooeyCircle *)gooeyCircle {
+    if (!_gooeyCircle) {
+        _gooeyCircle = [GooeyCircle layer];
+        _gooeyCircle.indicatorColor = self.selectedColor;
+        _gooeyCircle.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        _gooeyCircle.indicatorSize  = self.indicatorSize;
+        _gooeyCircle.contentsScale = [UIScreen mainScreen].scale;
+    }
+    
+    return _gooeyCircle;
+}
+
+- (RotateRect *)rotateRect
+{
+    if (!_rotateRect) {
+        _rotateRect = [RotateRect layer];
+        _rotateRect.indicatorColor = self.selectedColor;
+        _rotateRect.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        _rotateRect.indicatorSize  = self.indicatorSize;
+        _rotateRect.contentsScale = [UIScreen mainScreen].scale;
+    }
+    
+    return _rotateRect;
+}
+
+- (Indicator *)indicator {
+    if (!_indicator) {
+        switch (self.indicatorStyle) {
+            case IndicatorStyleGooeyCircle:
+                _indicator = self.gooeyCircle;
+                break;
+            case IndicatorStyleRotateRect:
+                _indicator = self.rotateRect;
+                break;
+            default:
+                break;
+        }
+        
+        [_indicator animateIndicatorWithScrollView:self.bindScrollView andIndicator:self];
+    }
+    
+    return _indicator;
+}
 
 #pragma mark -- PUBLIC Method
--(void)display{
-    
-    self.line = [Line layer];
-    self.line.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    self.line.pageCount = self.pageCount;
-    self.line.selectedPage = 1;
-    self.line.shouldShowProgressLine = self.shouldShowProgressLine;
-    self.line.unSelectedColor = self.unSelectedColor;
-    self.line.selectedColor = self.selectedColor;
-    self.line.bindScrollView = self.bindScrollView;
-    
-    self.line.contentsScale = [UIScreen mainScreen].scale;
-    [self.line setNeedsDisplay];
-    [self.layer addSublayer:self.line];
-    [self addIndicator];
-    
-    
-}
 
 -(Line *)pageControlLine{
     return self.line;
-}
-
-
-#pragma mark -- PRIVATE Method
-
--(void)addIndicator{
-    switch (self.indicatorStyle) {
-            
-        case IndicatorStyleGooeyCircle:
-            
-            self.gooeyCircle = [GooeyCircle layer];
-            self.indicator = self.gooeyCircle;
-            self.gooeyCircle.indicatorColor = self.selectedColor;
-            
-            self.gooeyCircle.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-            self.gooeyCircle.indicatorSize  = self.indicatorSize;
-            self.gooeyCircle.contentsScale = [UIScreen mainScreen].scale;
-            [self.gooeyCircle animateIndicatorWithScrollView:self.bindScrollView andIndicator:self];
-            [self.layer insertSublayer:self.gooeyCircle above:self.line];
-            self.layer.masksToBounds = NO;
-
-        
-            break;
-
-        case IndicatorStyleRotateRect:
-            
-            self.rotateRect = [RotateRect layer];
-            self.indicator = self.rotateRect;
-            self.rotateRect.indicatorColor = self.selectedColor;
-            
-            self.rotateRect.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-            self.rotateRect.indicatorSize  = self.indicatorSize;
-            self.rotateRect.contentsScale = [UIScreen mainScreen].scale;
-            [self.rotateRect animateIndicatorWithScrollView:self.bindScrollView andIndicator:self];
-            [self.layer insertSublayer:self.rotateRect above:self.line];
-            self.layer.masksToBounds = NO;
-            
-            break;
-            
-        default:
-            break;
-    }
 }
 
 #pragma mark -- UITapGestureRecognizer tapAction
