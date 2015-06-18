@@ -42,7 +42,7 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     [self.layer addSublayer:self.line];
-    [self.layer insertSublayer:self.gooeyCircle above:self.line];
+    [self.layer insertSublayer:self.indicator above:self.line];
     [self.line setNeedsDisplay];
 }
 
