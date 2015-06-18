@@ -6,7 +6,6 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-iOS-red.svg)
 
-
 ##Intro
 
 A custom **UIPageControl** with multiple animations. With two animation styles:
