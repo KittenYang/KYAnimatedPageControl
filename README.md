@@ -52,7 +52,7 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ##Usage
 
-* ###Initialize:
+* **Initialize**:
 
 ```objc
     self.pageControl = [[KYAnimatedPageControl alloc]initWithFrame:CGRectMake(20, 450, 280, 50)];
@@ -68,7 +68,7 @@ A custom **UIPageControl** with multiple animations. With two animation styles:
 
 ```
 
-* ###Must implement methods in UIScrollViewDelegate:
+* **Must implement methods in UIScrollViewDelegate**:
 
 ```objc
 #pragma mark -- UIScrollViewDelegate
