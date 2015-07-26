@@ -60,9 +60,25 @@
 
 - (void)layoutSubviews
 {
+    //adjust sub-layers' frame
+    self.line.frame = self.bounds;
+    self.indicator.frame = self.bounds;
+    
+    //remove sub-layers from super layer first
+    [self.line removeFromSuperlayer];
+    [self.indicator removeFromSuperlayer];
+    
+    //for issue: after rotating, the indicator's position is incorrect
+    //recreate the indicator
+    self.indicator=  nil;
+    
+    //then add them back
     [self.layer addSublayer:self.line];
     [self.layer insertSublayer:self.indicator above:self.line];
-    [self.line setNeedsDisplay];
+    
+    [self.indicator setNeedsDisplay];
+    [self.line animateSelectedLineToNewIndex:self.selectedPage];
+
 }
 
 #pragma mark - Helper
