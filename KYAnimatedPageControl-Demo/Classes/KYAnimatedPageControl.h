@@ -37,6 +37,8 @@ typedef enum : NSUInteger {
 
 //绑定的滚动视图
 @property(nonatomic,strong)UIScrollView *bindScrollView;
+//default delegate for bind scrollview
+@property(nonatomic, weak, readonly) id<UIScrollViewDelegate> bindScrollViewDelegate;
 
 //Possible to swipe (Pan gesture recognize)
 @property(nonatomic,assign)BOOL swipeEnable;
