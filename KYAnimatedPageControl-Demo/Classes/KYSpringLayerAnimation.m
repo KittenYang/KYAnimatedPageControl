@@ -29,6 +29,8 @@
     CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:keypath];
     anim.values = [self basicAnimationValues:fromValue toValue:toValue duration:duration];
     anim.duration = duration;
+    anim.fillMode = kCAFillModeForwards;
+    anim.removedOnCompletion = NO;
     
     return anim;
 }
@@ -42,6 +44,8 @@
     CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:keypath];
     anim.values = values;
     anim.duration = duration;
+    anim.fillMode = kCAFillModeForwards;
+    anim.removedOnCompletion = NO;
     
     return anim;
 }
@@ -51,6 +55,8 @@
     CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:keypath];
     anim.values = [self curveAnimationValues:fromValue toValue:toValue duration:duration];
     anim.duration = duration;
+    anim.fillMode = kCAFillModeForwards;
+    anim.removedOnCompletion = NO;
     
     return anim;
 }
@@ -61,6 +67,8 @@
     CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:keypath];
     anim.values = [self halfCurveAnimationValues:fromValue toValue:toValue duration:duration];
     anim.duration = duration;
+    anim.fillMode = kCAFillModeForwards;
+    anim.removedOnCompletion = NO;
     
     return anim;
     
