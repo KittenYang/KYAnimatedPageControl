@@ -8,6 +8,7 @@
 
 
 #import "KYAnimatedPageControl.h"
+#import "KYAnimatedPageControl+UIScrollViewDelegate.h"
 #import "GooeyCircle.h"
 #import "RotateRect.h"
 
@@ -122,6 +123,12 @@
 - (void)setSelectedPage:(NSInteger)selectedPage
 {
     self.line.selectedPage = selectedPage;
+}
+
+- (void)setBindScrollView:(UIScrollView *)bindScrollView
+{
+    _bindScrollView = bindScrollView;
+    _bindScrollView.delegate = self;
 }
 
 #pragma mark -- UITapGestureRecognizer tapAction
