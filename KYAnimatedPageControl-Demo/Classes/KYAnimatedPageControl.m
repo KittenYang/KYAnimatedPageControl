@@ -114,6 +114,16 @@
     return self.line;
 }
 
+- (NSInteger)selectedPage
+{
+    return self.line.selectedPage;
+}
+
+- (void)setSelectedPage:(NSInteger)selectedPage
+{
+    self.line.selectedPage = selectedPage;
+}
+
 #pragma mark -- UITapGestureRecognizer tapAction
 -(void)tapAction:(UITapGestureRecognizer *)ges{
     
