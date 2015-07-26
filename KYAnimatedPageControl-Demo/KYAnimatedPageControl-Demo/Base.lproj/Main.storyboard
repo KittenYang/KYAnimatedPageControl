@@ -127,10 +127,10 @@
             </objects>
             <point key="canvasLocation" x="1117" y="415"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller Storyboard-->
         <scene sceneID="hRy-SB-cvm">
             <objects>
-                <viewController id="tHe-Fi-zyQ" sceneMemberID="viewController">
+                <viewController id="tHe-Fi-zyQ" customClass="ViewControllerStoryboard" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qCI-tU-NXb"/>
                         <viewControllerLayoutGuide type="bottom" id="0rK-jE-625"/>
@@ -141,7 +141,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d5x-FO-vhI">
                                 <rect key="frame" x="150" y="72" width="300" height="400"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="400" id="QqP-7W-gWl"/>
                                     <constraint firstAttribute="width" constant="300" id="Ws4-vO-J7w"/>
@@ -183,7 +183,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="G1Q-1B-SMU"/>
+                                    <outlet property="dataSource" destination="tHe-Fi-zyQ" id="vLe-6C-fNs"/>
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFZ-Pa-tHl" customClass="KYAnimatedPageControl">
@@ -203,6 +203,10 @@
                             <constraint firstAttribute="centerX" secondItem="d5x-FO-vhI" secondAttribute="centerX" id="uLQ-tC-fQP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="demoCollectionView" destination="d5x-FO-vhI" id="aEw-CT-LmY"/>
+                        <outlet property="pageControl" destination="MFZ-Pa-tHl" id="mui-R2-weV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3MB-Rh-Zga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -55,6 +55,11 @@
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
+
+}
+
+- (void)layoutSubviews
+{
     [self.layer addSublayer:self.line];
     [self.layer insertSublayer:self.indicator above:self.line];
     [self.line setNeedsDisplay];
