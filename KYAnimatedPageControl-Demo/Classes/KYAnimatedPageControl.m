@@ -20,8 +20,6 @@
 @property(nonatomic,strong)GooeyCircle *gooeyCircle;
 @property(nonatomic,strong)RotateRect  *rotateRect;
 
-@property(nonatomic, weak) id<UIScrollViewDelegate> scrollViewDelegate;
-
 
 @property (nonatomic) NSInteger lastIndex;
 
@@ -52,7 +50,7 @@
     self.layer.masksToBounds = NO;
     
     //init scrollviewDelegate
-    self.scrollViewDelegate = self;
+    _bindScrollViewDelegate = self;
 
 }
 
@@ -143,7 +141,6 @@
 - (void)setBindScrollView:(UIScrollView *)bindScrollView
 {
     _bindScrollView = bindScrollView;
-    _bindScrollView.delegate = self.scrollViewDelegate;
 }
 
 #pragma mark -- UITapGestureRecognizer tapAction

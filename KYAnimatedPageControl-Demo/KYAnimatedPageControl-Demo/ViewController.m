@@ -27,6 +27,7 @@
     self.pageControl.unSelectedColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.pageControl.selectedColor = [UIColor redColor];
     self.pageControl.bindScrollView = self.demoCollectionView;
+    ((UIScrollView *)self.demoCollectionView).delegate = self.pageControl.bindScrollViewDelegate;
     self.pageControl.shouldShowProgressLine = YES;
     
     self.pageControl.indicatorStyle = IndicatorStyleGooeyCircle;
