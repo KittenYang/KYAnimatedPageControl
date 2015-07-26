@@ -32,18 +32,28 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
-        [self addGestureRecognizer:tap];
-        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
-        [self addGestureRecognizer:pan];
-        
-        self.layer.masksToBounds = NO;
-        
-        //init scrollviewDelegate
-        self.scrollViewDelegate = self;
-    }
+                [self commonInit];
+            }
     return self;
+}
+
+- (void)awakeFromNib
+{
+    [self commonInit];
+}
+
+- (void) commonInit
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    [self addGestureRecognizer:tap];
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+    [self addGestureRecognizer:pan];
+    
+    self.layer.masksToBounds = NO;
+    
+    //init scrollviewDelegate
+    self.scrollViewDelegate = self;
+
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
