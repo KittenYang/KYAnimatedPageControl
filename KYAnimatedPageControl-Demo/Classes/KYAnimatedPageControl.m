@@ -8,6 +8,7 @@
 
 
 #import "KYAnimatedPageControl.h"
+#import "KYAnimatedPageControl+UIScrollViewDelegate.h"
 #import "GooeyCircle.h"
 #import "RotateRect.h"
 
@@ -36,6 +37,9 @@
         [self addGestureRecognizer:pan];
         
         self.layer.masksToBounds = NO;
+        
+        //init scrollviewDelegate
+        _bindScrollViewDelegate = self;
     }
     return self;
 }
@@ -114,6 +118,21 @@
     return self.line;
 }
 
+- (NSInteger)selectedPage
+{
+    return self.line.selectedPage;
+}
+
+- (void)setSelectedPage:(NSInteger)selectedPage
+{
+    self.line.selectedPage = selectedPage;
+}
+
+- (void)setBindScrollView:(UIScrollView *)bindScrollView
+{
+    _bindScrollView = bindScrollView;
+}
+
 #pragma mark -- UITapGestureRecognizer tapAction
 -(void)tapAction:(UITapGestureRecognizer *)ges{
     
@@ -144,9 +163,15 @@
     
 }
 
--(void)animateToIndex:(NSInteger)index
+-(void)animateToIndex:(NSUInteger)index
 {
     NSAssert(self.bindScrollView != nil, @"You can not scroll without assigning bindScrollView");
+    
+    if(index >= self.pageCount)
+    {
+        return;
+    }
+    
     CGFloat HOWMANYDISTANCE =  ABS((self.line.selectedLineLength - index *((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1)))) / ((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1));
 //    NSLog(@"howmanydistance:%f",HOWMANYDISTANCE/self.pageCount);
     

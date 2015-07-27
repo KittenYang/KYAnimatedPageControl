@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E39D1F91B6494020018B144 /* KYAnimatedPageControl+UIScrollViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E39D1F81B6494020018B144 /* KYAnimatedPageControl+UIScrollViewDelegate.m */; };
 		5F49CE5C1B26C3BB00C304FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F49CE5B1B26C3BB00C304FE /* main.m */; };
 		5F49CE5F1B26C3BB00C304FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F49CE5E1B26C3BB00C304FE /* AppDelegate.m */; };
 		5F49CE621B26C3BB00C304FE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F49CE611B26C3BB00C304FE /* ViewController.m */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E39D1F71B6494020018B144 /* KYAnimatedPageControl+UIScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KYAnimatedPageControl+UIScrollViewDelegate.h"; sourceTree = "<group>"; };
+		3E39D1F81B6494020018B144 /* KYAnimatedPageControl+UIScrollViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KYAnimatedPageControl+UIScrollViewDelegate.m"; sourceTree = "<group>"; };
 		5F49CE561B26C3BB00C304FE /* KYAnimatedPageControl-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KYAnimatedPageControl-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F49CE5A1B26C3BB00C304FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F49CE5B1B26C3BB00C304FE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -106,13 +109,13 @@
 				5F49CE5E1B26C3BB00C304FE /* AppDelegate.m */,
 				5F793B3C1B29965600A77B17 /* DemoCell.h */,
 				5F793B3D1B29965700A77B17 /* DemoCell.m */,
+				5F49CE661B26C3BB00C304FE /* Images.xcassets */,
+				5F793B2D1B286F5900A77B17 /* KYAnimatedPageControl */,
+				5F49CE681B26C3BB00C304FE /* LaunchScreen.xib */,
+				5F49CE631B26C3BB00C304FE /* Main.storyboard */,
+				5F49CE591B26C3BB00C304FE /* Supporting Files */,
 				5F49CE601B26C3BB00C304FE /* ViewController.h */,
 				5F49CE611B26C3BB00C304FE /* ViewController.m */,
-				5F793B2D1B286F5900A77B17 /* KYAnimatedPageControl */,
-				5F49CE631B26C3BB00C304FE /* Main.storyboard */,
-				5F49CE661B26C3BB00C304FE /* Images.xcassets */,
-				5F49CE681B26C3BB00C304FE /* LaunchScreen.xib */,
-				5F49CE591B26C3BB00C304FE /* Supporting Files */,
 			);
 			path = "KYAnimatedPageControl-Demo";
 			sourceTree = "<group>";
@@ -155,10 +158,12 @@
 		5F793B2D1B286F5900A77B17 /* KYAnimatedPageControl */ = {
 			isa = PBXGroup;
 			children = (
+				5F793B341B289FD000A77B17 /* IndicatorStyle */,
 				5F793B2A1B286F5100A77B17 /* KYAnimatedPageControl.h */,
 				5F793B2B1B286F5100A77B17 /* KYAnimatedPageControl.m */,
+				3E39D1F71B6494020018B144 /* KYAnimatedPageControl+UIScrollViewDelegate.h */,
+				3E39D1F81B6494020018B144 /* KYAnimatedPageControl+UIScrollViewDelegate.m */,
 				5F793B381B28A1BA00A77B17 /* Line */,
-				5F793B341B289FD000A77B17 /* IndicatorStyle */,
 				5F793B291B286F4500A77B17 /* SpringAnimation */,
 			);
 			name = KYAnimatedPageControl;
@@ -320,6 +325,7 @@
 				5F793B461B2A935E00A77B17 /* Indicator.m in Sources */,
 				5F793B251B28345A00A77B17 /* KYSpringLayerAnimation.m in Sources */,
 				5F793B301B289F2500A77B17 /* GooeyCircle.m in Sources */,
+				3E39D1F91B6494020018B144 /* KYAnimatedPageControl+UIScrollViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

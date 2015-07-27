@@ -202,6 +202,8 @@
     CGFloat offSetX = scrollView.contentOffset.x - lastContentOffsetX;
     
     self.selectedLineLength = initialSelectedLineLength + (offSetX/scrollView.frame.size.width) * DISTANCE;
+    _selectedPage = self.selectedLineLength/DISTANCE + 1;//update the selectedPage while scrolling
+    
     [self setNeedsDisplay];
 
 }
