@@ -22,7 +22,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.pageControl.bindScrollView = self.demoCollectionView;
-    ((UIScrollView *)self.demoCollectionView).delegate = self.pageControl.bindScrollViewDelegate;
+//    ((UIScrollView *)self.demoCollectionView).delegate = self.pageControl.bindScrollViewDelegate;
+    [self.pageControl appendScrollViewDelegate:nil];
     
     self.pageControl.pageCount = 8;
     self.pageControl.unSelectedColor = [UIColor colorWithWhite:0.9 alpha:1];

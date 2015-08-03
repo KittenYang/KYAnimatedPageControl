@@ -37,8 +37,10 @@ typedef enum : NSUInteger {
 
 //绑定的滚动视图
 @property(nonatomic,strong)UIScrollView *bindScrollView;
-//default delegate for bind scrollview
-@property(nonatomic, weak, readonly) id<UIScrollViewDelegate> bindScrollViewDelegate;
+
+//method to append a scroll view delegate
+- (void)appendScrollViewDelegate:(id )delegate;
+
 
 //Possible to swipe (Pan gesture recognize)
 @property(nonatomic,assign)BOOL swipeEnable;
@@ -62,6 +64,8 @@ typedef enum : NSUInteger {
 
 //选中某个index的回调 DidSelecteSomeIndex Block
 @property(nonatomic,copy)void(^didSelectIndexBlock)(NSInteger index);
+
+
 
 
 @end

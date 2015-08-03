@@ -11,7 +11,7 @@
 #import "KYAnimatedPageControl+UIScrollViewDelegate.h"
 #import "GooeyCircle.h"
 #import "RotateRect.h"
-
+#import "MulticastDelegate.h"
 
 @interface KYAnimatedPageControl()
 
@@ -19,6 +19,9 @@
 //Indicator-STYLE
 @property(nonatomic,strong)GooeyCircle *gooeyCircle;
 @property(nonatomic,strong)RotateRect  *rotateRect;
+@property(nonatomic,strong)MulticastDelegate<UIScrollViewDelegate> * delegates;
+//default delegate for bind scrollview
+@property(nonatomic, weak, readonly) id<UIScrollViewDelegate> bindScrollViewDelegate;
 
 
 @property (nonatomic) NSInteger lastIndex;
@@ -51,6 +54,9 @@
     
     //init scrollviewDelegate
     _bindScrollViewDelegate = self;
+    
+    //append the default delegate first
+    [self.delegates addDelegate:self.bindScrollViewDelegate];
 
 }
 
@@ -143,6 +149,17 @@
     return _indicator;
 }
 
+- (MulticastDelegate *)delegates
+{
+    if(!_delegates)
+    {
+        _delegates = (MulticastDelegate<UIScrollViewDelegate> *)[[MulticastDelegate alloc] init];
+        
+    }
+    
+    return _delegates;
+}
+
 #pragma mark -- PUBLIC Method
 
 -(Line *)pageControlLine{
@@ -162,6 +179,12 @@
 - (void)setBindScrollView:(UIScrollView *)bindScrollView
 {
     _bindScrollView = bindScrollView;
+    _bindScrollView.delegate = self.delegates;
+}
+
+- (void)appendScrollViewDelegate:(id )delegate
+{
+    [self.delegates addDelegate:delegate];
 }
 
 #pragma mark -- UITapGestureRecognizer tapAction
