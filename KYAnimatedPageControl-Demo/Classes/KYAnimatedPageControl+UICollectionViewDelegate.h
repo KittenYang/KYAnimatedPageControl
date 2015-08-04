@@ -1,5 +1,5 @@
 //
-//  KYAnimatedPageControl+UIScrollViewDelegate.h
+//  KYAnimatedPageControl+UICollectionViewDelegate.h
 //  KYAnimatedPageControl-Demo
 //
 //  Created by jiakai lian on 26/07/2015.
@@ -8,6 +8,6 @@
 
 #import "KYAnimatedPageControl.h"
 
-@interface KYAnimatedPageControl (UIScrollViewDelegate) <UICollectionViewDelegate>
+@interface KYAnimatedPageControl (UICollectionViewDelegate) <UICollectionViewDelegate>
 
 @end

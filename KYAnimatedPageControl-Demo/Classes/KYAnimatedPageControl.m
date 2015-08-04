@@ -8,7 +8,7 @@
 
 
 #import "KYAnimatedPageControl.h"
-#import "KYAnimatedPageControl+UIScrollViewDelegate.h"
+#import "KYAnimatedPageControl+UICollectionViewDelegate.h"
 #import "GooeyCircle.h"
 #import "RotateRect.h"
 #import <GCDMulticastDelegate.h>

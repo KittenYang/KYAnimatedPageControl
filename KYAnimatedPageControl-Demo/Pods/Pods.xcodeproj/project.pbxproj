@@ -28,8 +28,8 @@
 		8F455EB6B0FA1C8FC303DC8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667F421097948A44FFB61A9C /* Foundation.framework */; };
 		9590B2E9063FFC7AF0EBC5BF /* KYSpringLayerAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = DF98C91D5033CF1F463700A4 /* KYSpringLayerAnimation.h */; };
 		C48CF1C8F660C25A11B7B596 /* KYAnimatedPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EE5B57A9A5840311695A1 /* KYAnimatedPageControl.m */; };
-		C6E20986FE2A5E22A032A3C5 /* KYAnimatedPageControl+UIScrollViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6E3B5AE58AD8AE958AB62F /* KYAnimatedPageControl+UIScrollViewDelegate.m */; };
-		DA5E9F3A59275A79E979ADCB /* KYAnimatedPageControl+UIScrollViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7B31945682202C03728B61 /* KYAnimatedPageControl+UIScrollViewDelegate.h */; };
+		C6E20986FE2A5E22A032A3C5 /* KYAnimatedPageControl+UICollectionViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6E3B5AE58AD8AE958AB62F /* KYAnimatedPageControl+UICollectionViewDelegate.m */; };
+		DA5E9F3A59275A79E979ADCB /* KYAnimatedPageControl+UICollectionViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7B31945682202C03728B61 /* KYAnimatedPageControl+UICollectionViewDelegate.h */; };
 		F26A005A33A3F472B1411329 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667F421097948A44FFB61A9C /* Foundation.framework */; };
 		FDBB49E5EDFDCA094FA3FE9E /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DEAA2CD356E74CC813569D /* Line.m */; };
 /* End PBXBuildFile section */
@@ -72,7 +72,7 @@
 		2FF6A846AFFC6711EB608F9C /* Pods-KYAnimatedPageControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KYAnimatedPageControl-dummy.m"; sourceTree = "<group>"; };
 		328E149412A81B55B547CD1D /* Indicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = Indicator.m; sourceTree = "<group>"; };
 		391A46BC4E712CC484212304 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		4A6E3B5AE58AD8AE958AB62F /* KYAnimatedPageControl+UIScrollViewDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KYAnimatedPageControl+UIScrollViewDelegate.m"; sourceTree = "<group>"; };
+		4A6E3B5AE58AD8AE958AB62F /* KYAnimatedPageControl+UICollectionViewDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KYAnimatedPageControl+UICollectionViewDelegate.m"; sourceTree = "<group>"; };
 		59F533CB1386D5DEADF0D09D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
 		5B964EC778175E0CF2DA756C /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
 		5D078C63034CE388B23673E1 /* Pods-MulticastDelegate-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MulticastDelegate-Private.xcconfig"; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 		667F421097948A44FFB61A9C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		76903DDA1B65D40AD31B62DC /* GCDMulticastDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GCDMulticastDelegate.h; sourceTree = "<group>"; };
 		94641C01E04CD5EEA30A9E9C /* GooeyCircle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = GooeyCircle.m; sourceTree = "<group>"; };
-		9A7B31945682202C03728B61 /* KYAnimatedPageControl+UIScrollViewDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KYAnimatedPageControl+UIScrollViewDelegate.h"; sourceTree = "<group>"; };
+		9A7B31945682202C03728B61 /* KYAnimatedPageControl+UICollectionViewDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KYAnimatedPageControl+UICollectionViewDelegate.h"; sourceTree = "<group>"; };
 		9ABDF7F224E5537262DA929C /* KYAnimatedPageControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KYAnimatedPageControl.h; sourceTree = "<group>"; };
 		9F6B6F68D646E04CA519CA82 /* RotateRect.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RotateRect.m; sourceTree = "<group>"; };
 		B32F1A749073F4924D24D558 /* libPods-MulticastDelegate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MulticastDelegate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,8 +235,8 @@
 				328E149412A81B55B547CD1D /* Indicator.m */,
 				9ABDF7F224E5537262DA929C /* KYAnimatedPageControl.h */,
 				2B3EE5B57A9A5840311695A1 /* KYAnimatedPageControl.m */,
-				9A7B31945682202C03728B61 /* KYAnimatedPageControl+UIScrollViewDelegate.h */,
-				4A6E3B5AE58AD8AE958AB62F /* KYAnimatedPageControl+UIScrollViewDelegate.m */,
+				9A7B31945682202C03728B61 /* KYAnimatedPageControl+UICollectionViewDelegate.h */,
+				4A6E3B5AE58AD8AE958AB62F /* KYAnimatedPageControl+UICollectionViewDelegate.m */,
 				DF98C91D5033CF1F463700A4 /* KYSpringLayerAnimation.h */,
 				F05C7BD458FAECD1FEF29B1B /* KYSpringLayerAnimation.m */,
 				E94CBCB91D9A9EAA082DD07E /* Line.h */,
@@ -300,7 +300,7 @@
 				48F1D7EDECF0DDFE36B7C4E3 /* GCDMulticastDelegate+ResponseToSelector.h in Headers */,
 				41E01CF8FCAF586D22528DEF /* GooeyCircle.h in Headers */,
 				65712B1FC4F81976AD1885A6 /* Indicator.h in Headers */,
-				DA5E9F3A59275A79E979ADCB /* KYAnimatedPageControl+UIScrollViewDelegate.h in Headers */,
+				DA5E9F3A59275A79E979ADCB /* KYAnimatedPageControl+UICollectionViewDelegate.h in Headers */,
 				0A1AB28D89714DA9ABE8CB51 /* KYAnimatedPageControl.h in Headers */,
 				9590B2E9063FFC7AF0EBC5BF /* KYSpringLayerAnimation.h in Headers */,
 				380B9058A01CCC64D4DC3B2B /* Line.h in Headers */,
@@ -399,7 +399,7 @@
 				1F982CF19B32A1EAAF5CE70D /* GCDMulticastDelegate+ResponseToSelector.m in Sources */,
 				48313164773D978D86481BA0 /* GooeyCircle.m in Sources */,
 				20F15185E6BB287D8663B1DD /* Indicator.m in Sources */,
-				C6E20986FE2A5E22A032A3C5 /* KYAnimatedPageControl+UIScrollViewDelegate.m in Sources */,
+				C6E20986FE2A5E22A032A3C5 /* KYAnimatedPageControl+UICollectionViewDelegate.m in Sources */,
 				C48CF1C8F660C25A11B7B596 /* KYAnimatedPageControl.m in Sources */,
 				8D5ED37F5839C7753AEE4142 /* KYSpringLayerAnimation.m in Sources */,
 				FDBB49E5EDFDCA094FA3FE9E /* Line.m in Sources */,
