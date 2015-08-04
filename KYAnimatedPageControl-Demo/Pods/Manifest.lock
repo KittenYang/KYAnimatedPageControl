@@ -1,5 +1,7 @@
 PODS:
-  - KYAnimatedPageControl (1.0.5)
+  - KYAnimatedPageControl (1.0.5):
+    - MulticastDelegate
+  - MulticastDelegate (0.0.1.1)
 
 DEPENDENCIES:
   - KYAnimatedPageControl (from `../`)
@@ -9,6 +11,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  KYAnimatedPageControl: 4b6360b6ed2cad47b757aa11e8903827d2cd2385
+  KYAnimatedPageControl: 6c21afa3dbceaabd1529ab4b41a723f888cd29da
+  MulticastDelegate: 473589ab16a00612150f8bfd726caac85125e695
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.37.1

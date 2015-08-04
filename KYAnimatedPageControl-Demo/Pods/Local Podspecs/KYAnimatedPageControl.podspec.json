@@ -19,5 +19,10 @@
   "frameworks": [
     "Foundation",
     "UIKit"
-  ]
+  ],
+  "dependencies": {
+    "MulticastDelegate": [
+
+    ]
+  }
 }

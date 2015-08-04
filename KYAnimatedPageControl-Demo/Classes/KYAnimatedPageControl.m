@@ -11,7 +11,8 @@
 #import "KYAnimatedPageControl+UIScrollViewDelegate.h"
 #import "GooeyCircle.h"
 #import "RotateRect.h"
-#import "KYMulticastDelegate.h"
+#import <GCDMulticastDelegate.h>
+#import "GCDMulticastDelegate+ResponseToSelector.h"
 
 @interface KYAnimatedPageControl()
 
@@ -19,7 +20,7 @@
 //Indicator-STYLE
 @property(nonatomic,strong)GooeyCircle *gooeyCircle;
 @property(nonatomic,strong)RotateRect  *rotateRect;
-@property(nonatomic,strong) KYMulticastDelegate <UIScrollViewDelegate> * delegates;
+@property(nonatomic,strong) GCDMulticastDelegate * delegates;
 //default delegate for bind scrollview
 @property(nonatomic, weak, readonly) id<UIScrollViewDelegate> bindScrollViewDelegate;
 
@@ -56,7 +57,7 @@
     _bindScrollViewDelegate = self;
     
     //append the default delegate first
-    [self.delegates addDelegate:self.bindScrollViewDelegate];
+    [self.delegates addDelegate:self.bindScrollViewDelegate delegateQueue:dispatch_get_main_queue()];
 
 }
 
@@ -155,11 +156,11 @@
     return _indicator;
 }
 
-- (KYMulticastDelegate *)delegates
+- (GCDMulticastDelegate *)delegates
 {
     if(!_delegates)
     {
-        _delegates = (KYMulticastDelegate <UIScrollViewDelegate> *)[[KYMulticastDelegate alloc] init];
+        _delegates = (GCDMulticastDelegate *)[[GCDMulticastDelegate alloc] init];
         
     }
     
@@ -185,12 +186,12 @@
 - (void)setBindScrollView:(UIScrollView *)bindScrollView
 {
     _bindScrollView = bindScrollView;
-    _bindScrollView.delegate = self.delegates;
+    _bindScrollView.delegate = (id<UIScrollViewDelegate>)self.delegates;
 }
 
 - (void)addDelegate:(id )delegate
 {
-    [self.delegates addDelegate:delegate];
+    [self.delegates addDelegate:delegate delegateQueue:dispatch_get_main_queue()];
 }
 
 

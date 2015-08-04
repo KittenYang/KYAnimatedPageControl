@@ -41,6 +41,10 @@
     self.indicator.lastContentOffset = scrollView.contentOffset.x;
 }
 
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSLog(@"didSelectItemAtIndexPath 2");
+//}
 
 
 @end

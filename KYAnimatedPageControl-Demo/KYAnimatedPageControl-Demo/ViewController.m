@@ -29,7 +29,7 @@
     self.pageControl.bindScrollView = self.demoCollectionView;
 
 //    ((UIScrollView *)self.demoCollectionView).delegate = self.pageControl.bindScrollViewDelegate;
-    [self.pageControl addDelegate:nil];
+    [self.pageControl addDelegate:self];
     self.pageControl.shouldShowProgressLine = YES;
     
     self.pageControl.indicatorStyle = IndicatorStyleGooeyCircle;
@@ -40,6 +40,7 @@
     self.pageControl.didSelectIndexBlock = ^(NSInteger index){
         NSLog(@"Did Selected index : %ld",(long)index);
     };
+
     
 }
 
@@ -62,6 +63,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"didSelectItemAtIndexPath");
 }
 
 #pragma mark - Action

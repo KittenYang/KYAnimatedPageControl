@@ -8,6 +8,6 @@
 
 #import "KYAnimatedPageControl.h"
 
-@interface KYAnimatedPageControl (UIScrollViewDelegate) <UIScrollViewDelegate>
+@interface KYAnimatedPageControl (UIScrollViewDelegate) <UICollectionViewDelegate>
 
 @end
