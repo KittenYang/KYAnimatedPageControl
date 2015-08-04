@@ -60,6 +60,12 @@
 
 }
 
+- (void)dealloc {
+
+    [self.delegates removeAllDelegates];
+}
+
+
 - (void)willMoveToSuperview:(UIView *)newSuperview {
 
 }
@@ -182,11 +188,16 @@
     _bindScrollView.delegate = self.delegates;
 }
 
-- (void)appendScrollViewDelegate:(id )delegate
+- (void)addDelegate:(id )delegate
 {
     [self.delegates addDelegate:delegate];
 }
 
+
+- (void)removeDelegate:(id)delegate
+{
+    [self.delegates removeDelegate:delegate];
+}
 #pragma mark -- UITapGestureRecognizer tapAction
 -(void)tapAction:(UITapGestureRecognizer *)ges{
     

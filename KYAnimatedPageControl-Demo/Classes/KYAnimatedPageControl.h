@@ -38,8 +38,9 @@ typedef enum : NSUInteger {
 //绑定的滚动视图
 @property(nonatomic,strong)UIScrollView *bindScrollView;
 
-//method to append a scroll view delegate
-- (void)appendScrollViewDelegate:(id )delegate;
+//method to add a scroll view delegate
+- (void)addDelegate:(id)delegate;
+- (void)removeDelegate:(id)delegate;
 
 
 //Possible to swipe (Pan gesture recognize)

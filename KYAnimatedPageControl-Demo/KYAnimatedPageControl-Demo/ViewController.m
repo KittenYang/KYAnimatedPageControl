@@ -29,7 +29,7 @@
     self.pageControl.bindScrollView = self.demoCollectionView;
 
 //    ((UIScrollView *)self.demoCollectionView).delegate = self.pageControl.bindScrollViewDelegate;
-    [self.pageControl appendScrollViewDelegate:nil];
+    [self.pageControl addDelegate:nil];
     self.pageControl.shouldShowProgressLine = YES;
     
     self.pageControl.indicatorStyle = IndicatorStyleGooeyCircle;
