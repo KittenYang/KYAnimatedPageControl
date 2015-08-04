@@ -1,14 +1,14 @@
 //
-//  MulticastDelegate.m
-//  MulticastDelegate
+//  KYMulticastDelegate.m
+//  KYMulticastDelegate
 //
 //  Created by Alexander Tkachenko on 7/15/13.
 //  Copyright (c) 2013 Alexander Tkachenko. All rights reserved.
 //
 
-#import "MulticastDelegate.h"
+#import "KYMulticastDelegate.h"
 
-@implementation MulticastDelegate {
+@implementation KYMulticastDelegate {
     // the array of observing delegates
     NSHashTable* _delegates;
 }

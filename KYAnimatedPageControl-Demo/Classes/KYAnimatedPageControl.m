@@ -11,7 +11,7 @@
 #import "KYAnimatedPageControl+UIScrollViewDelegate.h"
 #import "GooeyCircle.h"
 #import "RotateRect.h"
-#import "MulticastDelegate.h"
+#import "KYMulticastDelegate.h"
 
 @interface KYAnimatedPageControl()
 
@@ -19,7 +19,7 @@
 //Indicator-STYLE
 @property(nonatomic,strong)GooeyCircle *gooeyCircle;
 @property(nonatomic,strong)RotateRect  *rotateRect;
-@property(nonatomic,strong)MulticastDelegate<UIScrollViewDelegate> * delegates;
+@property(nonatomic,strong) KYMulticastDelegate <UIScrollViewDelegate> * delegates;
 //default delegate for bind scrollview
 @property(nonatomic, weak, readonly) id<UIScrollViewDelegate> bindScrollViewDelegate;
 
@@ -149,11 +149,11 @@
     return _indicator;
 }
 
-- (MulticastDelegate *)delegates
+- (KYMulticastDelegate *)delegates
 {
     if(!_delegates)
     {
-        _delegates = (MulticastDelegate<UIScrollViewDelegate> *)[[MulticastDelegate alloc] init];
+        _delegates = (KYMulticastDelegate <UIScrollViewDelegate> *)[[KYMulticastDelegate alloc] init];
         
     }
     
