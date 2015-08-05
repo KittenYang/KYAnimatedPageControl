@@ -38,6 +38,11 @@ typedef enum : NSUInteger {
 //绑定的滚动视图
 @property(nonatomic,strong)UIScrollView *bindScrollView;
 
+//method to add a scroll view delegate
+- (void)addDelegate:(id)delegate;
+- (void)removeDelegate:(id)delegate;
+
+
 //Possible to swipe (Pan gesture recognize)
 @property(nonatomic,assign)BOOL swipeEnable;
 
@@ -56,10 +61,12 @@ typedef enum : NSUInteger {
 @property(nonatomic,readonly)Line *pageControlLine;
 
 // Animate to index
--(void)animateToIndex:(NSInteger)index;
+-(void)animateToIndex:(NSUInteger)index;
 
 //选中某个index的回调 DidSelecteSomeIndex Block
 @property(nonatomic,copy)void(^didSelectIndexBlock)(NSInteger index);
+
+
 
 
 @end
