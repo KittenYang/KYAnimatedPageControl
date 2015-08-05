@@ -94,23 +94,12 @@
                                     <action selector="swipeEnableChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="hAA-JU-KvE"/>
                                 </connections>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTW-Ud-HQO">
-                                <rect key="frame" x="232" y="562" width="137" height="30"/>
-                                <state key="normal" title="Storyboad Example">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="tHe-Fi-zyQ" kind="show" id="eeC-lx-ACz"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ele-OK-NhY" secondAttribute="bottom" constant="8" id="2sF-bn-F9N"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GTW-Ud-HQO" secondAttribute="bottom" constant="8" id="4rO-Ye-K1l"/>
                             <constraint firstAttribute="centerX" secondItem="XhU-ad-KPF" secondAttribute="centerX" id="KPh-jB-TTf"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OV4-YL-pk2" secondAttribute="bottom" constant="3" id="QjJ-Bi-zq9"/>
-                            <constraint firstAttribute="centerX" secondItem="GTW-Ud-HQO" secondAttribute="centerX" id="Tlk-SX-E0i"/>
                             <constraint firstItem="OV4-YL-pk2" firstAttribute="leading" secondItem="e1b-3k-TMI" secondAttribute="trailing" constant="8" id="XM9-KL-xNX"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="e1b-3k-TMI" secondAttribute="bottom" constant="8" id="Yfy-0N-TpF"/>
                             <constraint firstItem="XhU-ad-KPF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="b0M-UD-wsf"/>
@@ -118,7 +107,13 @@
                             <constraint firstAttribute="trailing" secondItem="Ele-OK-NhY" secondAttribute="trailing" constant="16" id="ljc-2i-ftC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="yKi-qb-vNa"/>
+                    <navigationItem key="navigationItem" id="yKi-qb-vNa">
+                        <barButtonItem key="rightBarButtonItem" title="Storyboard Example" id="fbZ-dw-x2g">
+                            <connections>
+                                <segue destination="tHe-Fi-zyQ" kind="show" id="zjl-LM-qoE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="demoCollectionView" destination="XhU-ad-KPF" id="9zX-e7-QNj"/>
                     </connections>

@@ -10,7 +10,7 @@
 #import "KYAnimatedPageControl.h"
 #import "DemoCell.h"
 
-@interface ViewControllerStoryboard ()<UICollectionViewDataSource>
+@interface ViewControllerStoryboard ()<UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet KYAnimatedPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UICollectionView *demoCollectionView;
 
@@ -23,7 +23,7 @@
     // Do any additional setup after loading the view.
     self.pageControl.bindScrollView = self.demoCollectionView;
 //    ((UIScrollView *)self.demoCollectionView).delegate = self.pageControl.bindScrollViewDelegate;
-    [self.pageControl addDelegate:nil];
+    [self.pageControl addDelegate:self];
     
     self.pageControl.pageCount = 8;
     self.pageControl.unSelectedColor = [UIColor colorWithWhite:0.9 alpha:1];
@@ -61,6 +61,12 @@
     
     return democell;
     
+}
+
+#pragma mark  -- UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"didSelectItemAtIndexPath");
 }
 
 
