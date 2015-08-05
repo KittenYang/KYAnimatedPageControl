@@ -112,6 +112,7 @@
         CGContextAddPath(ctx, linePath);
         CGContextSetFillColorWithColor(ctx, self.selectedColor.CGColor);
         CGContextFillPath(ctx);
+        CGPathRelease(linePath);
         
         return;
     }
@@ -136,6 +137,7 @@
     CGContextAddPath(ctx, linePath);
     CGContextSetFillColorWithColor(ctx, self.unSelectedColor.CGColor);
     CGContextFillPath(ctx);
+    CGPathRelease(linePath);
     
     
     if (self.shouldShowProgressLine == YES) {
@@ -157,6 +159,7 @@
         CGContextAddPath(ctx, linePath);
         CGContextSetFillColorWithColor(ctx, self.selectedColor.CGColor);
         CGContextFillPath(ctx);
+        CGPathRelease(linePath);
     
     }
 
