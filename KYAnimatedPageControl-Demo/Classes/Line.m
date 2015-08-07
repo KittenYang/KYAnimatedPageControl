@@ -219,6 +219,7 @@
     if (flag) {
         initialSelectedLineLength = self.selectedLineLength;
         lastContentOffsetX = (self.selectedLineLength / DISTANCE) * self.bindScrollView.frame.size.width;
+        [self removeAllAnimations];
     }
     [self removeAllAnimations];
 }
