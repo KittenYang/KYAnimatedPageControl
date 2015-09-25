@@ -10,6 +10,7 @@
 #import "KYAnimatedPageControl.h"
 #import "DemoCell.h"
 
+
 @interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property(nonatomic,strong)KYAnimatedPageControl *pageControl;
@@ -21,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     
     self.pageControl = [[KYAnimatedPageControl alloc]initWithFrame:CGRectMake(20, 450, 280, 50)];
     self.pageControl.pageCount = 8;

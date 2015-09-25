@@ -192,6 +192,7 @@
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     if (flag) {
         beginGooeyAnim = NO;
+        [self removeAllAnimations];
     }
 }
 
