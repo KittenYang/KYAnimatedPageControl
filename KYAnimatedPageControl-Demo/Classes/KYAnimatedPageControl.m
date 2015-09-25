@@ -8,11 +8,9 @@
 
 
 #import "KYAnimatedPageControl.h"
-#import "KYAnimatedPageControl+UICollectionViewDelegate.h"
 #import "GooeyCircle.h"
 #import "RotateRect.h"
-#import <GCDMulticastDelegate.h>
-#import "GCDMulticastDelegate+ResponseToSelector.h"
+
 
 @interface KYAnimatedPageControl()
 
@@ -20,9 +18,6 @@
 //Indicator-STYLE
 @property(nonatomic,strong)GooeyCircle *gooeyCircle;
 @property(nonatomic,strong)RotateRect  *rotateRect;
-@property(nonatomic,strong) GCDMulticastDelegate * delegates;
-//default delegate for bind scrollview
-@property(nonatomic, weak, readonly) id<UIScrollViewDelegate> bindScrollViewDelegate;
 
 
 @property (nonatomic) NSInteger lastIndex;
@@ -34,64 +29,21 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-                [self commonInit];
-            }
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+        [self addGestureRecognizer:tap];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+        [self addGestureRecognizer:pan];
+        
+        self.layer.masksToBounds = NO;
+    }
     return self;
 }
 
-- (void)awakeFromNib
-{
-    [self commonInit];
-}
-
-- (void) commonInit
-{
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
-    [self addGestureRecognizer:tap];
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
-    [self addGestureRecognizer:pan];
-    
-    self.layer.masksToBounds = NO;
-    
-    //init scrollviewDelegate
-    _bindScrollViewDelegate = self;
-    
-    //append the default delegate first
-    [self.delegates addDelegate:self.bindScrollViewDelegate delegateQueue:dispatch_get_main_queue()];
-
-}
-
-- (void)dealloc {
-
-    [self.delegates removeAllDelegates];
-}
-
-
 - (void)willMoveToSuperview:(UIView *)newSuperview {
-
-}
-
-- (void)layoutSubviews
-{
-    //adjust sub-layers' frame
-    self.line.frame = self.bounds;
-    self.indicator.frame = self.bounds;
-    
-    //remove sub-layers from super layer first
-    [self.line removeFromSuperlayer];
-    [self.indicator removeFromSuperlayer];
-    
-    //for issue: after rotating, the indicator's position is incorrect
-    //recreate the indicator
-    self.indicator=  nil;
-    
-    //then add them back
     [self.layer addSublayer:self.line];
     [self.layer insertSublayer:self.indicator above:self.line];
-    
-    [self.indicator setNeedsDisplay];
-    [self.line animateSelectedLineToNewIndex:self.selectedPage];
-
+    [self.line setNeedsDisplay];
 }
 
 #pragma mark - Helper
@@ -156,49 +108,12 @@
     return _indicator;
 }
 
-- (GCDMulticastDelegate *)delegates
-{
-    if(!_delegates)
-    {
-        _delegates = (GCDMulticastDelegate *)[[GCDMulticastDelegate alloc] init];
-        
-    }
-    
-    return _delegates;
-}
-
 #pragma mark -- PUBLIC Method
 
 -(Line *)pageControlLine{
     return self.line;
 }
 
-- (NSInteger)selectedPage
-{
-    return self.line.selectedPage;
-}
-
-- (void)setSelectedPage:(NSInteger)selectedPage
-{
-    self.line.selectedPage = selectedPage;
-}
-
-- (void)setBindScrollView:(UIScrollView *)bindScrollView
-{
-    _bindScrollView = bindScrollView;
-    _bindScrollView.delegate = (id<UIScrollViewDelegate>)self.delegates;
-}
-
-- (void)addDelegate:(id )delegate
-{
-    [self.delegates addDelegate:delegate delegateQueue:dispatch_get_main_queue()];
-}
-
-
-- (void)removeDelegate:(id)delegate
-{
-    [self.delegates removeDelegate:delegate];
-}
 #pragma mark -- UITapGestureRecognizer tapAction
 -(void)tapAction:(UITapGestureRecognizer *)ges{
     
@@ -229,15 +144,9 @@
     
 }
 
--(void)animateToIndex:(NSUInteger)index
+-(void)animateToIndex:(NSInteger)index
 {
     NSAssert(self.bindScrollView != nil, @"You can not scroll without assigning bindScrollView");
-    
-    if(index >= self.pageCount)
-    {
-        return;
-    }
-    
     CGFloat HOWMANYDISTANCE =  ABS((self.line.selectedLineLength - index *((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1)))) / ((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1));
 //    NSLog(@"howmanydistance:%f",HOWMANYDISTANCE/self.pageCount);
     
