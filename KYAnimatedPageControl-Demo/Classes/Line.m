@@ -114,7 +114,6 @@
         CGContextAddPath(ctx, linePath);
         CGContextSetFillColorWithColor(ctx, self.selectedColor.CGColor);
         CGContextFillPath(ctx);
-        CGPathRelease(linePath);
         
         return;
     }
@@ -139,7 +138,6 @@
     CGContextAddPath(ctx, linePath);
     CGContextSetFillColorWithColor(ctx, self.unSelectedColor.CGColor);
     CGContextFillPath(ctx);
-    CGPathRelease(linePath);
     
     
     if (self.shouldShowProgressLine == YES) {
@@ -161,7 +159,6 @@
         CGContextAddPath(ctx, linePath);
         CGContextSetFillColorWithColor(ctx, self.selectedColor.CGColor);
         CGContextFillPath(ctx);
-        CGPathRelease(linePath);
     
     }
 
@@ -205,8 +202,6 @@
     CGFloat offSetX = scrollView.contentOffset.x - lastContentOffsetX;
     
     self.selectedLineLength = initialSelectedLineLength + (offSetX/scrollView.frame.size.width) * DISTANCE;
-    _selectedPage = self.selectedLineLength/DISTANCE + 1;//update the selectedPage while scrolling
-    
     [self setNeedsDisplay];
 
 }
@@ -221,7 +216,7 @@
         lastContentOffsetX = (self.selectedLineLength / DISTANCE) * self.bindScrollView.frame.size.width;
         [self removeAllAnimations];
     }
-    [self removeAllAnimations];
+    
 }
 
 @end
