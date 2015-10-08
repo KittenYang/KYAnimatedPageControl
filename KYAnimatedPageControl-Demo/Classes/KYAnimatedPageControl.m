@@ -12,7 +12,7 @@
 #import "RotateRect.h"
 
 
-@interface KYAnimatedPageControl()
+@interface KYAnimatedPageControl() <UIScrollViewDelegate>
 
 @property(nonatomic,strong)Line *line;
 //Indicator-STYLE
@@ -47,6 +47,16 @@
 }
 
 #pragma mark - Helper
+- (void)setDisableBindedScrollView:(BOOL)disableBindedScrollView {
+    if (disableBindedScrollView) {
+        CGRect frame = [UIScreen mainScreen].bounds;
+        self.bindScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0,
+                                                                             frame.size.width,
+                                                                             frame.size.height)];
+        self.bindScrollView.delegate = self;
+    }
+    _disableBindedScrollView = disableBindedScrollView;
+}
 
 - (Line *)line {
     if (!_line) {
@@ -126,7 +136,7 @@
             index += 1;
         }
         CGFloat HOWMANYDISTANCE =  ABS((self.line.selectedLineLength - index *((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1)))) / ((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1));
-//        NSLog(@"howmanydistance:%f",HOWMANYDISTANCE/self.pageCount);
+        NSLog(@"howmanydistance:%f",HOWMANYDISTANCE/self.pageCount);
         
         //背景线条动画
         [self.line animateSelectedLineToNewIndex:index+1];
@@ -134,8 +144,14 @@
         //scrollview 滑动
         [self.bindScrollView setContentOffset:CGPointMake(self.bindScrollView.frame.size.width *index, 0) animated:YES];
         
-        //恢复动画
-        [self.indicator performSelector:@selector(restoreAnimation:) withObject:@(HOWMANYDISTANCE/self.pageCount) afterDelay:0.2];
+        
+        if (self.disableBindedScrollView) {
+            //恢复动画
+            [self.indicator performSelector:@selector(restoreAnimation:) withObject:@(HOWMANYDISTANCE/self.pageCount) afterDelay:0.01];
+        } else {
+            //恢复动画
+            [self.indicator performSelector:@selector(restoreAnimation:) withObject:@(HOWMANYDISTANCE/self.pageCount) afterDelay:0.2];
+        }
 
         if(self.didSelectIndexBlock) {
             self.didSelectIndexBlock(index+1);
@@ -148,7 +164,7 @@
 {
     NSAssert(self.bindScrollView != nil, @"You can not scroll without assigning bindScrollView");
     CGFloat HOWMANYDISTANCE =  ABS((self.line.selectedLineLength - index *((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1)))) / ((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1));
-//    NSLog(@"howmanydistance:%f",HOWMANYDISTANCE/self.pageCount);
+    NSLog(@"howmanydistance:%f",HOWMANYDISTANCE/self.pageCount);
     
     //背景线条动画
     [self.line animateSelectedLineToNewIndex:index+1];
@@ -159,7 +175,7 @@
     //恢复动画
     [self.indicator performSelector:@selector(restoreAnimation:) withObject:@(HOWMANYDISTANCE/self.pageCount) afterDelay:0.2];
     
-//    NSLog(@"DidSelected index:%ld",(long)index+1);
+    NSLog(@"DidSelected index:%ld",(long)index+1);
 }
 
 - (void)panAction:(UIPanGestureRecognizer *)pan {
@@ -181,5 +197,38 @@
         }
     }
 }
+
+#pragma mark -- UIScrollViewDelegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    //Indicator动画
+    [self.indicator animateIndicatorWithScrollView:scrollView andIndicator:self];
+    
+    if (scrollView.dragging || scrollView.isDecelerating || scrollView.tracking) {
+        //背景线条动画
+        [self.pageControlLine animateSelectedLineWithScrollView:scrollView];
+    }
+    
+}
+
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    
+    self.indicator.lastContentOffset = scrollView.contentOffset.x;
+    
+}
+
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    
+    
+    [self.indicator restoreAnimation:@(1.0/self.pageCount)];
+    
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    self.indicator.lastContentOffset = scrollView.contentOffset.x;
+}
+
 
 @end
