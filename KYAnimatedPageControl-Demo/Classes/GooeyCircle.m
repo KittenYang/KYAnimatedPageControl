@@ -22,9 +22,8 @@
 
 @implementation GooeyCircle{
     
+    
     BOOL beginGooeyAnim;
-    
-    
 }
 
 #pragma mark -- Initialize
@@ -56,16 +55,8 @@
 
 - (void)drawInContext:(CGContextRef)ctx{
     
-//    UIBezierPath *rectPath = [UIBezierPath bezierPathWithRect:self.currentRect];
-//    CGContextAddPath(ctx, rectPath.CGPath);
-//    CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
-//    CGContextSetLineWidth(ctx, 1.0);
-//    CGFloat dash[] = {5.0, 5.0};
-//    CGContextSetLineDash(ctx, 0.0, dash, 2); //1
-//    CGContextStrokePath(ctx); //给线条填充颜色
 
     
-
     CGFloat offset = self.currentRect.size.width / 3.6;  //设置3.6 出来的弧度最像圆形
 
     CGPoint rectCenter = CGPointMake(self.currentRect.origin.x + self.currentRect.size.width/2 , self.currentRect.origin.y + self.currentRect.size.height/2);
@@ -156,7 +147,6 @@
         
         self.currentRect = CGRectMake(originX - self.indicatorSize/2, self.frame.size.height/2-self.indicatorSize/2, self.indicatorSize, self.indicatorSize);
     }
-    
 
     [self setNeedsDisplay];
 
@@ -166,15 +156,7 @@
 
 -(void)restoreAnimation:(id)howmanydistance{
     
-    //Spring animation
-    CAKeyframeAnimation *anim = [[KYSpringLayerAnimation sharedAnimManager]createSpringAnima:@"factor" duration:0.8 usingSpringWithDamping:0.5 initialSpringVelocity:3 fromValue:@(0.5+[howmanydistance floatValue]* 1.5) toValue:@(0)];
-    
-    //line animation
-//    CAKeyframeAnimation *anim = [[KYSpringLayerAnimation sharedAnimManager] createBasicAnima:@"factor" duration:0.4 fromValue:@(0.5+[howmanydistance floatValue]* 1.5) toValue:@(0)];
-        
-    //half animation
-//    CAKeyframeAnimation *anim = [[KYSpringLayerAnimation sharedAnimManager] createHalfCurveAnima:@"factor" duration:0.3 fromValue:@(0.5+[howmanydistance floatValue]* 1.5) toValue:@(0)];
-    
+    CAKeyframeAnimation *anim = [KYSpringLayerAnimation createSpring:@"factor" duration:0.8 usingSpringWithDamping:0.5 initialSpringVelocity:3 fromValue:@(0.5+[howmanydistance floatValue]* 1.5) toValue:@(0)];
     anim.delegate = self;
     self.factor = 0;
     [self addAnimation:anim forKey:@"restoreAnimation"];
@@ -192,7 +174,6 @@
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     if (flag) {
         beginGooeyAnim = NO;
-        [self removeAllAnimations];
     }
 }
 

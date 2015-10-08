@@ -75,7 +75,7 @@
     if (_selectedPage != selectedPage) {
         _selectedPage = selectedPage;
         
-//        self.selectedLineLength = self.pageCount > 1 ? (selectedPage-1) * DISTANCE : 0;
+        self.selectedLineLength = self.pageCount > 1 ? (selectedPage-1) * DISTANCE : 0;
         
         initialSelectedLineLength = self.selectedLineLength;
 
@@ -98,14 +98,12 @@
 //invoke when call setNeedDisplay
 -(void)drawInContext:(CGContextRef)ctx{
     
-    NSLog(@"selectedLineLength:%f",self.selectedLineLength);
-    
+
     NSAssert(self.selectedPage <= self.pageCount, @"ERROR:PageCount can not less than selectedPage");
     NSAssert(self.selectedPage != 0, @"ERROR:SelectedPage can not be ZERO!");
 
     
     if (self.pageCount == 1) {
-        
         CGMutablePathRef linePath = CGPathCreateMutable();
         CGPathMoveToPoint(linePath, nil, self.frame.size.width/2, self.frame.size.height/2);
         CGRect circleRect = CGRectMake(self.frame.size.width/2 - self.ballDiameter/2, self.frame.size.height / 2 - self.ballDiameter / 2, self.ballDiameter, self.ballDiameter);
@@ -171,15 +169,11 @@
 -(void)animateSelectedLineToNewIndex:(NSInteger)newIndex{
 
     CGFloat newLineLength = (newIndex-1) * DISTANCE;
-    //Spring Animation
-//    CAKeyframeAnimation *anim = [[KYSpringLayerAnimation sharedAnimManager] createSpringAnima:@"selectedLineLength" duration:1.0 usingSpringWithDamping:0.5 initialSpringVelocity:3 fromValue:@(self.selectedLineLength) toValue:@(newLineLength)];
-    
-    //Half curve animation
-    CAKeyframeAnimation *anim = [[KYSpringLayerAnimation sharedAnimManager] createHalfCurveAnima:@"selectedLineLength" duration:1.0 fromValue:@(self.selectedLineLength) toValue:@(newLineLength)];
-    
-    //line animation
-//    CAKeyframeAnimation *anim = [[KYSpringLayerAnimation sharedAnimManager] createBasicAnima:@"selectedLineLength" duration:0.2 fromValue:@(self.selectedLineLength) toValue:@(newLineLength)];
+    CABasicAnimation *anim = [KYSpringLayerAnimation create:@"selectedLineLength" duration:0.2 fromValue:@(self.selectedLineLength) toValue:@(newLineLength)];
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
 
+    //Spring Animation
+//    CAKeyframeAnimation *anim = [KYSpringLayerAnimation createSpring:@"selectedLineLength" duration:1.0 usingSpringWithDamping:0.5 initialSpringVelocity:3 fromValue:@(self.selectedLineLength) toValue:@(newLineLength)];
     
     self.selectedLineLength = newLineLength;
     anim.delegate = self;
