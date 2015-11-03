@@ -68,7 +68,7 @@
     anim.values = [self halfCurveAnimationValues:fromValue toValue:toValue duration:duration];
     anim.duration = duration;
     anim.fillMode = kCAFillModeForwards;
-    anim.removedOnCompletion = NO;
+    anim.removedOnCompletion = YES;
     
     return anim;
     
