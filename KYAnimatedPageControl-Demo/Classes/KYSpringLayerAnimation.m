@@ -30,7 +30,7 @@
     anim.values = [self basicAnimationValues:fromValue toValue:toValue duration:duration];
     anim.duration = duration;
     anim.fillMode = kCAFillModeForwards;
-    anim.removedOnCompletion = NO;
+    anim.removedOnCompletion = YES;
     
     return anim;
 }
@@ -45,7 +45,7 @@
     anim.values = values;
     anim.duration = duration;
     anim.fillMode = kCAFillModeForwards;
-    anim.removedOnCompletion = NO;
+    anim.removedOnCompletion = YES;
     
     return anim;
 }
@@ -56,7 +56,7 @@
     anim.values = [self curveAnimationValues:fromValue toValue:toValue duration:duration];
     anim.duration = duration;
     anim.fillMode = kCAFillModeForwards;
-    anim.removedOnCompletion = NO;
+    anim.removedOnCompletion = YES;
     
     return anim;
 }
@@ -68,7 +68,7 @@
     anim.values = [self halfCurveAnimationValues:fromValue toValue:toValue duration:duration];
     anim.duration = duration;
     anim.fillMode = kCAFillModeForwards;
-    anim.removedOnCompletion = NO;
+    anim.removedOnCompletion = YES;
     
     return anim;
     
