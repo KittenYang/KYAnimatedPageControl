@@ -86,7 +86,7 @@
 
 #pragma mark -- override Class func
 + (BOOL)needsDisplayForKey:(NSString *)key{
-    if ([key isEqual: @"selectedLineLength"]) {
+    if ([key isEqualToString: @"selectedLineLength"]) {
         return  YES;
     }
     return [super needsDisplayForKey:key];
