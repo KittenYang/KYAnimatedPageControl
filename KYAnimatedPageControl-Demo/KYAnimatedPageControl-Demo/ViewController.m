@@ -105,7 +105,7 @@
 
 #pragma mark - Action
 
-- (IBAction)animateToForthPage:(id)sender
+- (IBAction)animateToFourthPage:(id)sender
 {
     [self.pageControl animateToIndex:3];
 }
