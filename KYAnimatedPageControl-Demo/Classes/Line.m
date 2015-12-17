@@ -183,6 +183,7 @@
     
     self.selectedLineLength = newLineLength;
     anim.delegate = self;
+    anim.removedOnCompletion = YES;
     [self addAnimation:anim forKey:@"lineAnimation"];
 
     self.selectedPage = newIndex;
