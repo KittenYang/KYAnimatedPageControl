@@ -25,7 +25,7 @@
     
     
     
-    self.pageControl = [[KYAnimatedPageControl alloc]initWithFrame:CGRectMake(20, 450, 280, 50)];
+    self.pageControl = [[KYAnimatedPageControl alloc]initWithFrame:CGRectMake(20, 300, 280, 50)];
     self.pageControl.pageCount = 8;
     self.pageControl.unSelectedColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.pageControl.selectedColor = [UIColor redColor];
@@ -56,7 +56,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 
     DemoCell *democell = (DemoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"democell" forIndexPath:indexPath];
-    democell.cellNumLabel.text = [NSString stringWithFormat:@"%ld",indexPath.item + 1];
+    democell.cellNumLabel.text = [NSString stringWithFormat:@"%@", @(indexPath.item + 1)];
     
     return democell;
     
