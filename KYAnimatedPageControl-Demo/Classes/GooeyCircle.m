@@ -17,14 +17,10 @@
 
 @property(nonatomic,assign)CGFloat factor;
 
-
 @end
 
 @implementation GooeyCircle{
-    
     BOOL beginGooeyAnim;
-    
-    
 }
 
 #pragma mark -- Initialize
@@ -36,11 +32,9 @@
     return self;
 }
 
-
 -(id)initWithLayer:(GooeyCircle *)layer{
     self = [super initWithLayer:layer];
     if (self) {
-        
         self.indicatorSize  = layer.indicatorSize;
         self.indicatorColor = layer.indicatorColor;
         self.currentRect = layer.currentRect;
@@ -55,25 +49,11 @@
 #pragma mark -- override  class func
 
 - (void)drawInContext:(CGContextRef)ctx{
-    
-//    UIBezierPath *rectPath = [UIBezierPath bezierPathWithRect:self.currentRect];
-//    CGContextAddPath(ctx, rectPath.CGPath);
-//    CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
-//    CGContextSetLineWidth(ctx, 1.0);
-//    CGFloat dash[] = {5.0, 5.0};
-//    CGContextSetLineDash(ctx, 0.0, dash, 2); //1
-//    CGContextStrokePath(ctx); //给线条填充颜色
-
-    
-
     CGFloat offset = self.currentRect.size.width / 3.6;  //设置3.6 出来的弧度最像圆形
-
     CGPoint rectCenter = CGPointMake(self.currentRect.origin.x + self.currentRect.size.width/2 , self.currentRect.origin.y + self.currentRect.size.height/2);
     
     //8个控制点实际的偏移距离。 The real distance of 8 control points.
     CGFloat extra = (self.currentRect.size.width * 2 / 5) * _factor;
-    
-    
     CGPoint pointA = CGPointMake(rectCenter.x ,self.currentRect.origin.y + extra);
     CGPoint pointB = CGPointMake(self.scrollDirection == ScrollDirectionLeft ? rectCenter.x + self.currentRect.size.width/2 : rectCenter.x + self.currentRect.size.width/2 + extra*2 ,rectCenter.y);
     CGPoint pointC = CGPointMake(rectCenter.x ,rectCenter.y + self.currentRect.size.height/2 - extra);
@@ -91,76 +71,48 @@
     CGPoint c7 = CGPointMake(pointD.x, pointD.y - offset);
     CGPoint c8 = CGPointMake(pointA.x - offset, pointA.y);
 
-
     // 更新界面
     UIBezierPath* ovalPath = [UIBezierPath bezierPath];
-
     [ovalPath moveToPoint: pointA];
     [ovalPath addCurveToPoint:pointB controlPoint1:c1 controlPoint2:c2];
     [ovalPath addCurveToPoint:pointC controlPoint1:c3 controlPoint2:c4];
     [ovalPath addCurveToPoint:pointD controlPoint1:c5 controlPoint2:c6];
     [ovalPath addCurveToPoint:pointA controlPoint1:c7 controlPoint2:c8];
-    
     [ovalPath closePath];
-
-
+  
     CGContextAddPath(ctx, ovalPath.CGPath);
     CGContextSetFillColorWithColor(ctx, self.indicatorColor.CGColor);
     CGContextFillPath(ctx);
     
 }
 
-
 +(BOOL)needsDisplayForKey:(NSString *)key{
     if ([key isEqual:@"factor"]) {
         return  YES;
     }
-    
-    
     return  [super needsDisplayForKey:key];
 }
 
-
-
-
 #pragma mark -- override superclass method
 -(void)animateIndicatorWithScrollView:(UIScrollView *)scrollView andIndicator:(KYAnimatedPageControl *)pgctl{
-    
-    
     if ((scrollView.contentOffset.x - self.lastContentOffset) >= 0 && (scrollView.contentOffset.x - self.lastContentOffset) <= (scrollView.frame.size.width)/2) {
         self.scrollDirection = ScrollDirectionLeft;
     }else if ((scrollView.contentOffset.x - self.lastContentOffset) <= 0 && (scrollView.contentOffset.x - self.lastContentOffset) >= -(scrollView.frame.size.width)/2){
         self.scrollDirection = ScrollDirectionRight;
     }
-    
-
+  
     if (!beginGooeyAnim) {
-        
         _factor = MIN(1, MAX(0, (ABS(scrollView.contentOffset.x - self.lastContentOffset) / scrollView.frame.size.width)));
     }
-
-//    NSLog(@"factor:%f",_factor);
-
-    
     CGFloat originX = (scrollView.contentOffset.x / scrollView.frame.size.width) * (pgctl.frame.size.width / (pgctl.pageCount-1));
-    
     if (originX - self.indicatorSize/2 <= 0) {
-        
         self.currentRect = CGRectMake(0, self.frame.size.height/2-self.indicatorSize/2, self.indicatorSize, self.indicatorSize);
-        
     }else if ((originX - self.indicatorSize/2) >= self.frame.size.width - self.indicatorSize){
-        
         self.currentRect = CGRectMake(self.frame.size.width - self.indicatorSize, self.frame.size.height/2-self.indicatorSize/2, self.indicatorSize, self.indicatorSize);
-        
     }else{
-        
         self.currentRect = CGRectMake(originX - self.indicatorSize/2, self.frame.size.height/2-self.indicatorSize/2, self.indicatorSize, self.indicatorSize);
     }
-    
-
     [self setNeedsDisplay];
-
-    
 }
 
 
@@ -184,7 +136,6 @@
 
 #pragma mark -- CAAnimation Delegate
 -(void)animationDidStart:(CAAnimation *)anim{
-
     beginGooeyAnim = YES;
 }
 
@@ -195,8 +146,5 @@
         [self removeAllAnimations];
     }
 }
-
-
-
 
 @end

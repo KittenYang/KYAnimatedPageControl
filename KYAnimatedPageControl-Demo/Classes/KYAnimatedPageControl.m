@@ -29,7 +29,6 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
         [self addGestureRecognizer:tap];
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
@@ -126,8 +125,7 @@
             index += 1;
         }
         CGFloat HOWMANYDISTANCE =  ABS((self.line.selectedLineLength - index *((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1)))) / ((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1));
-//        NSLog(@"howmanydistance:%f",HOWMANYDISTANCE/self.pageCount);
-        
+
         //背景线条动画
         [self.line animateSelectedLineToNewIndex:index+1];
 
@@ -148,7 +146,6 @@
 {
     NSAssert(self.bindScrollView != nil, @"You can not scroll without assigning bindScrollView");
     CGFloat HOWMANYDISTANCE =  ABS((self.line.selectedLineLength - index *((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1)))) / ((self.line.frame.size.width - self.line.ballDiameter) / (self.line.pageCount - 1));
-//    NSLog(@"howmanydistance:%f",HOWMANYDISTANCE/self.pageCount);
     
     //背景线条动画
     [self.line animateSelectedLineToNewIndex:index+1];
@@ -158,8 +155,6 @@
     
     //恢复动画
     [self.indicator performSelector:@selector(restoreAnimation:) withObject:@(HOWMANYDISTANCE/self.pageCount) afterDelay:0.2];
-    
-//    NSLog(@"DidSelected index:%ld",(long)index+1);
 }
 
 - (void)panAction:(UIPanGestureRecognizer *)pan {

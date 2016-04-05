@@ -24,8 +24,6 @@
 #pragma mark -- Main Class Methods
 
 -(CAKeyframeAnimation *)createBasicAnima:(NSString *)keypath duration:(CFTimeInterval)duration fromValue:(id)fromValue toValue:(id)toValue{
-    
-    
     CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:keypath];
     anim.values = [self basicAnimationValues:fromValue toValue:toValue duration:duration];
     anim.duration = duration;
@@ -40,7 +38,6 @@
     CGFloat dampingFactor  = 10.0;
     CGFloat velocityFactor = 10.0;
     NSMutableArray *values = [self springAnimationValues:fromValue toValue:toValue usingSpringWithDamping:damping * dampingFactor initialSpringVelocity:velocity * velocityFactor duration:duration];
-    
     CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:keypath];
     anim.values = values;
     anim.duration = duration;
@@ -49,7 +46,6 @@
     
     return anim;
 }
-
 
 -(CAKeyframeAnimation *)createCurveAnima:(NSString *)keypath duration:(CFTimeInterval)duration fromValue:(id)fromValue toValue:(id)toValue{
     CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:keypath];
@@ -61,9 +57,7 @@
     return anim;
 }
 
-
 -(CAKeyframeAnimation *)createHalfCurveAnima:(NSString *)keypath duration:(CFTimeInterval)duration fromValue:(id)fromValue toValue:(id)toValue{
-    
     CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:keypath];
     anim.values = [self halfCurveAnimationValues:fromValue toValue:toValue duration:duration];
     anim.duration = duration;
@@ -77,13 +71,11 @@
 
 #pragma mark -- Helper Methods
 -(NSMutableArray *) basicAnimationValues:(id)fromValue toValue:(id)toValue duration:(CGFloat)duration{
-    
     NSInteger numOfFrames = duration * 60;
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:numOfFrames];
     for (NSInteger i = 0; i < numOfFrames; i++) {
         [values addObject:@(0.0)];
     }
-    
     CGFloat diff = [toValue floatValue] - [fromValue floatValue];
     for (NSInteger frame = 0; frame<numOfFrames; frame++) {
         
@@ -94,15 +86,12 @@
     return values;
 }
 
-
 -(NSMutableArray *) halfCurveAnimationValues:(id)fromValue toValue:(id)toValue duration:(CGFloat)duration{
-    
     NSInteger numOfFrames = duration * 60;
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:numOfFrames];
     for (NSInteger i = 0; i < numOfFrames; i++) {
         [values addObject:@(0.0)];
     }
-    
     CGFloat diff = [toValue floatValue] - [fromValue floatValue];
     for (NSInteger frame = 0; frame<numOfFrames; frame++) {
         
@@ -113,9 +102,7 @@
     return values;
 }
 
-
 -(NSMutableArray *) curveAnimationValues:(id)fromValue toValue:(id)toValue duration:(CGFloat)duration{
-
     NSInteger numOfFrames = duration * 60;
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:numOfFrames];
     for (NSInteger i = 0; i < numOfFrames; i++) {
@@ -132,10 +119,7 @@
     return values;
 }
 
-
 -(NSMutableArray *) springAnimationValues:(id)fromValue toValue:(id)toValue usingSpringWithDamping:(CGFloat)damping initialSpringVelocity:(CGFloat)velocity duration:(CGFloat)duration{
-    
-    
     //60个关键帧
     NSInteger numOfFrames  = duration * 60;
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:numOfFrames];
@@ -145,21 +129,13 @@
     
     //差值
     CGFloat diff = [toValue floatValue] - [fromValue floatValue];
-    
     for (NSInteger frame = 0; frame<numOfFrames; frame++) {
-        
         CGFloat x = (CGFloat)frame / (CGFloat)numOfFrames;
         CGFloat value = [toValue floatValue] - diff * (pow(M_E, -damping * x) * cos(velocity * x)); // y = 1-e^{-5x} * cos(30x)
-        
         values[frame] = @(value);
     }
-
     return values;
     
 }
-
-
-
-
 
 @end

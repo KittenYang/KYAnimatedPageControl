@@ -15,7 +15,6 @@
 
 @implementation Indicator
 
-
 -(void)setIndicatorSize:(CGFloat)indicatorSize{
     if (_indicatorSize != indicatorSize) {
         _indicatorSize = indicatorSize;

@@ -13,6 +13,4 @@
 
 @interface GooeyCircle : Indicator
 
-
-
 @end

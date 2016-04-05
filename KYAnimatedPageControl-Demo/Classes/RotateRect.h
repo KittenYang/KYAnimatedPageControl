@@ -9,11 +9,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Indicator.h"
 
-
 @interface RotateRect : Indicator
-
-
-
-
 
 @end
