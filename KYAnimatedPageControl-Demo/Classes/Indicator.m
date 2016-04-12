@@ -15,19 +15,17 @@
 
 @implementation Indicator
 
--(void)setIndicatorSize:(CGFloat)indicatorSize{
-    if (_indicatorSize != indicatorSize) {
-        _indicatorSize = indicatorSize;
-    }
+- (void)setIndicatorSize:(CGFloat)indicatorSize {
+  if (_indicatorSize != indicatorSize) {
+    _indicatorSize = indicatorSize;
+  }
 }
 
-
--(void)animateIndicatorWithScrollView:(UIScrollView *)scrollView andIndicator:(KYAnimatedPageControl *)pgctl{
-    
+- (void)animateIndicatorWithScrollView:(UIScrollView *)scrollView
+                          andIndicator:(KYAnimatedPageControl *)pgctl {
 }
 
--(void)restoreAnimation:(id)howmanydistance{
-    
+- (void)restoreAnimation:(id)howmanydistance {
 }
 
 @end
