@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Kitten Yang. All rights reserved.
 //
 
-
-
 #import <QuartzCore/QuartzCore.h>
 #import "Indicator.h"
 

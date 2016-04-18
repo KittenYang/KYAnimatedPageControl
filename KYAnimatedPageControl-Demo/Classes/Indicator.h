@@ -9,12 +9,12 @@
 //
 
 typedef enum ScrollDirection {
-  ScrollDirectionNone,
-  ScrollDirectionRight,
-  ScrollDirectionLeft,
-  ScrollDirectionUp,
-  ScrollDirectionDown,
-  ScrollDirectionCrazy,
+    ScrollDirectionNone,
+    ScrollDirectionRight,
+    ScrollDirectionLeft,
+    ScrollDirectionUp,
+    ScrollDirectionDown,
+    ScrollDirectionCrazy,
 } ScrollDirection;
 
 #import <UIKit/UIKit.h>
