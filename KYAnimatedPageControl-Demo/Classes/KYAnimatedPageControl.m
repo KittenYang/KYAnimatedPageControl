@@ -51,8 +51,10 @@
 - (Line *)line {
     if (!_line) {
         _line = [Line layer];
+        // in case background ball is begger than foreground shape
+        CGFloat inset = self.line.ballDiameter > self.indicatorSize ? 0 : self.indicatorSize / 2 - self.line.ballDiameter / 2;
         _line.frame =
-        CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        CGRectMake(inset, 0, self.frame.size.width - (inset * 2), self.frame.size.height);
         _line.pageCount = self.pageCount;
         _line.selectedPage = 1;
         _line.shouldShowProgressLine = self.shouldShowProgressLine;
@@ -69,8 +71,10 @@
     if (!_gooeyCircle) {
         _gooeyCircle = [GooeyCircle layer];
         _gooeyCircle.indicatorColor = self.selectedColor;
+        // in case background ball is begger than foreground ball
+        CGFloat inset = self.line.ballDiameter > self.indicatorSize ? (self.line.ballDiameter / 2 - self.indicatorSize / 2) : 0;
         _gooeyCircle.frame =
-        CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        CGRectMake(inset, 0, self.frame.size.width - (inset * 2), self.frame.size.height);
         _gooeyCircle.indicatorSize = self.indicatorSize;
         _gooeyCircle.contentsScale = [UIScreen mainScreen].scale;
     }
@@ -82,8 +86,10 @@
     if (!_rotateRect) {
         _rotateRect = [RotateRect layer];
         _rotateRect.indicatorColor = self.selectedColor;
+        // in case background ball is begger than foreground shape
+        CGFloat inset = self.line.ballDiameter > self.indicatorSize ? (self.line.ballDiameter / 2 - self.indicatorSize / 2) : 0;
         _rotateRect.frame =
-        CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        CGRectMake(inset, 0, self.frame.size.width - (inset * 2), self.frame.size.height);
         _rotateRect.indicatorSize = self.indicatorSize;
         _rotateRect.contentsScale = [UIScreen mainScreen].scale;
     }

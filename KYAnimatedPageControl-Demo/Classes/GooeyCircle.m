@@ -116,6 +116,19 @@
                       1, MAX(0, (ABS(scrollView.contentOffset.x - self.lastContentOffset) /
                                  scrollView.frame.size.width)));
     }
+    
+    // get scroll view's position as in percentage
+    CGFloat position = scrollView.contentOffset.x / (scrollView.contentSize.width * (pgctl.pageCount - 1) / pgctl.pageCount);
+    CGFloat inset = pgctl.pageControlLine.ballDiameter > self.indicatorSize ? pgctl.pageControlLine.ballDiameter : self.indicatorSize;
+    CGFloat orginalX = 0; // at or moving towards to the first dot
+    if (position >= 1.0f) { // at or moving towards to the last dot
+        orginalX = pgctl.frame.size.width - inset;
+    } else if (position > 0.0f) { // middle dots
+        orginalX = (pgctl.frame.size.width - inset) * position;
+    }
+    self.currentRect = CGRectMake(orginalX, self.frame.size.height / 2 - self.indicatorSize / 2,
+                                  self.indicatorSize, self.indicatorSize);
+    /*
     CGFloat originX = (scrollView.contentOffset.x / scrollView.frame.size.width) *
     (pgctl.frame.size.width / (pgctl.pageCount - 1));
     if (originX - self.indicatorSize / 2 <= 0) {
@@ -134,6 +147,7 @@
                    self.frame.size.height / 2 - self.indicatorSize / 2,
                    self.indicatorSize, self.indicatorSize);
     }
+     */
     [self setNeedsDisplay];
 }
 
